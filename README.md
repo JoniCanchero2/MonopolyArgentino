@@ -1,11 +1,13 @@
 # MonopolyArgentino
-Juego de monopoly tradicional basado en Argentina
+Juego de Monopoly tradicional basado en Argentina hecho en Python
 
 **Introducción:**
 
-Monopoly es un juego de negocios y propiedades en el que cada jugador debe quedarse con todo y dejar a sus competencias en quiebra, puede haber un maximo de 6 jugadores (pero lo vamos a hacer con 1 contra 1 ) cada jugador empieza con $1500, el jugador en cuestion debe tirar dos dados (del 1 al 6 cada uno) y dependiendo de la casilla q salga debera comprar una propiedad pagar un impuesto pagarle a otro jugador si la propiedad en la que cae esta comprada, en caso de no poder comprarla por falta de dinero subasta la propiedad para el resto de jugadores. Existen 10 tarjetas de suerte, las cuales pueden ayudar o empeorar la situacion economica del jugador.
+El juego es una competencia de estrategia y gestión económica donde el objetivo es comprar todas las propiedades posibles y llevar a la bancarrota a los demás jugadores.
+Se avanza con dos dados, se invierte el dinero inicial ($1500) en propiedades, servicios (Luz/Agua) y transporte. La clave para ganar es adquirir grupos de color para poder construir casas y cobrar rentas más altas. El riesgo reside en las tiradas: sacar dados dobles tres veces seguidas resulta en arresto. Gana el último jugador que conserve su dinero.
 
 Reglas:
+
 Cada jugador por turno arrojará dos dados cual suma ambos indica el avance del jugador.
 
 Si la tirada del jugador da como resultado dos dados iguales, el jugador vuelve a tirar. 
@@ -19,55 +21,58 @@ Las propiedades se pueden comprar/subastar/negociar entre jugadores ya sea por o
 
 Cada propiedad posee un color, al poseer todas las propiedades del color compradas el jugador puede construir casas y cobrar más caro a los jugadores que pasen por sus propiedades.
 
-Ciertas casillas cuentan con tarjetas de suerte que benefician o empeoran la economia del jugador.
+Ciertas casillas benefician o empeoran la economia del jugador. Las casillas "de suerte" brindan una tarjeta aleatoria.
 
 Por cada vuelta al tablero c/jugador cobra $200.
 
+Existen varias casillas de transporte que se pueden comprar, dependiendo de esto, el jugador contrario que caiga sobre una de estas deberá pagar el valor correspondiente duplicado por cada propiedad adquirida.
+
+Las casillas de Luz y Agua tambien son comprables, el monto a pagar del jugador que pase sobre ellas y no las tenga compradas cambiara en funcion del numero de los dados. Si el dueño de las propiedades posee solamente una, el jugador que caiga deberá pagar el cuadruple de la suma de su tirada. En caso de que el dueño posea las dos propiedades, pagará diez veces la suma de su tirada.
 
 Casilleros (40):
 
 cada casilero tendrá su: id, nombre, color de grupo
 siempre y cuando no sean propiedades
 
-1) inicial
-2) Florencio varela {marron}
-3) Impuesto medio 
-4) Temperley {marron}
-5) Suerte (especial)
-6) Lineas de Colectivo (especial)
-7) Berazategui {celeste}
-8) Quilmes{celeste}
-9) Suerte (especial)
-10) Lomas de zamora {celeste}
-11) visita a la carcel (especial)
-12) Avellaneda {rosa}
-13) Compania de luz (especial)
-14) Lanús {rosa}
-15) La tablada {rosa}
-16) Linea de Trenes (especial)
-17) Moreno {naranja}
-18) Suerte (especial)
-19) Loma Hermosa {naranja}
-20) Hurlingham {naranja}
-21) Descanso y recibo de impuestos acumulados (especial)
-22) Villa Bosch {rojo}
-23) San Martin {rojo}
-24) Compania de Agua (especial)
-25) Tigre {rojo}
-26) Lienas de barcos (especial)
-27) San Isidro {amarillo}
-28) Olivos {amarillo}
-29) Suerte (especial)
-30) Vicente Lopez {amarillo}
-31) Carcel! (especial)
-32) Devoto {verde}
-33) Nuñez{verde}
-34) Suerte (especial)
-35) Belgrano {verde}
-36) Linea de avión(especial)
-37) Suerte (especial)
-38) Palermo {azul}
-39) Impuesto de lujo
-40) Puerto Madero {azul}
+1) Inicial (Indica inicio y la vuelta completa del tablero)
+2) Florencio Varela {Marron} (Propiedad de $50)
+3) Impuesto medio (Impuesto que resta $100)
+4) Temperley {Marron} (Propiedad de $60)
+5) Suerte (Especial) (Da una tarjeta de suerte)
+6) Lineas de Colectivo (Especial) (Propiedad de transporte que vale $150)
+7) Berazategui {Celeste} (Propiedad que vale $100)
+8) Quilmes{Celeste} (Propiedad que vale $110)
+9) Suerte (Especial) (Da una tarjeta de suerte)
+10) Lomas de Zamora {Celeste} (Propiedad que vale $120)
+11) visita a la carcel (Especial) (Casilla libre donde también van a parar los jugadores arrestados)
+12) Avellaneda {Rosa} (Propiedad que vale $140)
+13) Compañia de luz (Especial) (Propiedad de luz que vale $150)
+14) Lanús {Rosa} (Propiedad que vale $150)
+15) La Tablada {Rosa} (Propiedad que vale $160)
+16) Linea de Trenes (Especial) (Propiedad de transporte que vale $150)
+17) Moreno {Naranja} (Propiedad que vale $180)
+18) Suerte (Especial) (Da una tarjeta de suerte)
+19) Loma Hermosa {Naranja} (Propiedad que vale $190)
+20) Hurlingham {Naranja} (Propiedad que vale $200)
+21) Descanso y recibo de impuestos acumulados (especial)(Casilla en la que recibes los impuestos del banco)
+22) Villa Bosch {Rojo} (Propiedad que vale $220)
+23) San Martin {Rojo} (Propiedad que vale $230)
+24) Compañia de Agua (Especial) (Propiedad de agua que vale 150)
+25) Tigre {Rojo} (Propiedad que vale $240)
+26) Lienas de barcos (Especial) (Propiedad de transporte que vale $150)
+27) San Isidro {Amarillo} (Propiedad que vale $260)
+28) Olivos {Amarillo} (Propiedad que vale $270)
+29) Suerte (Especial) (Da una tarjeta de suerte)
+30) Vicente Lopez {Amarillo} (Propiedad que vale $280)
+31) Carcel! (Especial) (Vas a la carcel y perdes dos turnos o si queres salir antes pagas $300) 
+32) Devoto {Verde} (Propiedad que vale $300)
+33) Nuñez{Verde} (Propiedad que vale $310)
+34) Suerte (Especial) (Da una tarjeta de suerte)
+35) Belgrano {Verde} (Propiedad que vale $320)
+36) Linea de avión(Especial) (Propiedad de transporte que vale 150)
+37) Suerte (Especial) (Da una tarjeta de suerte)
+38) Palermo {Azul} (Propiedad que vale $350)
+39) Impuesto de lujo (Impuesto que resta $200)
+40) Puerto Madero {Azul} (Propiedad que vale $400)
 
 
