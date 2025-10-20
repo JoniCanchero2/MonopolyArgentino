@@ -7,12 +7,20 @@ Monopoly es un juego de negocios y propiedades en el que cada jugador debe queda
 
 Reglas:
 Cada jugador por turno arrojará dos dados cual suma ambos indica el avance del jugador.
-Si la tirada del jugador da como resultado dos dados iguales, el jugador vuelve a tirar. Esto se puede repetir una vez más con limite de 2 repeticiones, en caso de volver a tirar dados dobles el jugador es arrestado.
+
+Si la tirada del jugador da como resultado dos dados iguales, el jugador vuelve a tirar. 
+Esto se puede repetir una vez más con limite de 2 repeticiones, en caso de volver a tirar dados dobles el jugador es arrestado.
+
 Cada jugador empieza con $1500 con los cuales compra propiedades, paga impuestos al banco y/o al/los jugador/es contrario.
+
 El ganador es el último jugador con dinero, para esto debe conseguir que el resto pierda todo el suyo. 
+
 Las propiedades se pueden comprar/subastar/negociar entre jugadores ya sea por otras propiedades o por dinero.
+
 Cada propiedad posee un color, al poseer todas las propiedades del color compradas el jugador puede construir casas y cobrar más caro a los jugadores que pasen por sus propiedades.
+
 Ciertas casillas cuentan con tarjetas de suerte que benefician o empeoran la economia del jugador.
+
 Por cada vuelta al tablero c/jugador cobra $200.
 
 
@@ -63,5 +71,3 @@ siempre y cuando no sean propiedades
 40) Puerto Madero {azul}
 
 
-
-https://view.genially.com/61b7400d3b544e0e1f0f33c4/interactive-image-monopoly
