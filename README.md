@@ -25,7 +25,7 @@ siempre y cuando no sean propiedades
 10) Lomas de zamora {celeste}
 11) visita a la carcel (especial)
 12) Avellaneda {rosa}
-13) Compania de luz (especial)
+13) Compañia de luz (especial)
 14) Lanús {rosa}
 15) La tablada {rosa}
 16) Linea de Trenes (especial)
@@ -36,7 +36,7 @@ siempre y cuando no sean propiedades
 21) Descanso y recibo de impuestos acumulados (especial)
 22) Villa Bosch {rojo}
 23) San Martin {rojo}
-24) Compania de Agua (especial)
+24) Compañia de Agua (especial)
 25) Tigre {rojo}
 26) Lienas de barcos (especial)
 27) San Isidro {amarillo}
