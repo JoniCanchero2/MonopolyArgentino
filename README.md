@@ -75,4 +75,15 @@ siempre y cuando no sean propiedades
 39) Impuesto de lujo (Impuesto que resta $200)
 40) Puerto Madero {Azul} (Propiedad que vale $400)
 
+Tarjetas de suerte:
+1) pasaste por una villa y te desvalijaron -100
+2) heredaste una propiedad de un abuelo en italia +150
+3) te hiciste amigo de un juez (vale para salir de la cárcel 1 vez)
+4) plantaron merluza en tu auto (vas a la cárcel)
+5) el banco te paga +100
+6) el banco te retiene plata -150
+7) feliz cumpleaños! (cada jugador te da 50)
+8) tus compañeros te salvan...(le das 20 a cada jugador)
+9) visita al presidente (vas hasta Olivos, si pasa por la salida cobra el dinero)
+10) retrocedé 3 casilleros por pete
 
