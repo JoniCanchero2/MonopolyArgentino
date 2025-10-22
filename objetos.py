@@ -1,4 +1,4 @@
-def casilla():
+class casilla():
   def __init__(self, id_propuedad, nombre, color, propietario,valor_propiedad, valor_alquiler, cantidad_casas):
     self.id_propuedad = id_propuedad
     self.nombre = nombre
@@ -9,14 +9,14 @@ def casilla():
     self.cantidad_casas = cantidad_casas
 
 
-def jugador():
+class jugador():
   def __init__(self, id_jugador, dinero, posicion, propiedades_compradas):
     self.id_jugador = id_jugador
     self.dinero = dinero
     self.posicion = posicion
     self.propiedades_compradas = propiedades_compradas
 
-def tablero(): 
+class tablero(): 
   def __init__(self, id_propiedad, nombre):
     self.id_propiedad = id_propiedad
     self.nombre = nombre
