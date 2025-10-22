@@ -94,5 +94,5 @@ Tarjetas de suerte:
 16) Cayo mercado pago todos pierden $100 M
 17) Pagas al FMI - $100 M 
 18) Argentina gana el mundial, feriado nacional, ganas un turno B
-19) Te engancharon con una menor perdes $200
-20) Descubriste que tu hermana tiene only fans ganas 200
+19) Te engancharon con una menor perdes $200 M
+20) Descubriste que tu hermana tiene only fans ganas 200 B
