@@ -1,6 +1,6 @@
 # MonopolyArgentino
 Juego de Monopoly tradicional basado en Argentina hecho en Python
-Por: Jonathan Ramirez, Mateo Navarro, Brandon Moreira  y Axel Cavero\n
+Por: Jonathan Ramirez, Mateo Navarro, Brandon Moreyra  y Axel Cavero\n
 **Introducción:**
 
 El juego es una competencia de estrategia y gestión económica donde el objetivo es comprar todas las propiedades posibles y llevar a la bancarrota a los demás jugadores.
@@ -76,14 +76,23 @@ siempre y cuando no sean propiedades
 40) Puerto Madero {Azul} (Propiedad que vale $400)
 
 Tarjetas de suerte:
-1) pasaste por una villa y te desvalijaron -100
-2) heredaste una propiedad de un abuelo en italia +150
-3) te hiciste amigo de un juez (vale para salir de la cárcel 1 vez)
-4) plantaron merluza en tu auto (vas a la cárcel)
-5) el banco te paga +100
-6) el banco te retiene plata -150
-7) feliz cumpleaños! (cada jugador te da 50)
-8) tus compañeros te salvan...(le das 20 a cada jugador)
-9) visita al presidente (vas hasta Olivos, si pasa por la salida cobra el dinero)
-10) retrocedé 3 casilleros por pete
-
+1) Miraste la hora en el lugar equivacado te robaron el celular -100 M
+2) Le ganaste a Tomy Munaretto +150 B
+3) Coimeaste un juez (vale para salir de la cárcel 1 vez) B
+4) Plantaron merluza en tu auto (vas a la cárcel) M
+5) Cobraste la asignacion ganas +100 B
+6) Corralito de dolares perdes -150 M
+7) Feliz cumpleaños (cada jugador te da 50) B 
+8) Tus compañeros te vendieron un curso...(le das 20 a cada jugador) M
+9) Visita al presidente (vas hasta Olivos, si pasa por la salida cobra el dinero) B
+10) Perdiste el bondi retrocedes 3 casilleros M
+11) Te paro transito perdes un turnos  M
+12) Te cruzaste un vendedor de medias perdes $40 M
+13) Ganaste la rifa del dia del padre ganaste $50 B
+14) Dia del empleado municipal ganaste 1 turno B
+15) Mejoro la inflación todos ganan $100 B
+16) Cayo mercado pago todos pierden $100 M
+17) Pagas al FMI - $100 M 
+18) Argentina gana el mundial, feriado nacional, ganas un turno B
+19) Te engancharon con una menor perdes $200
+20) Descubriste que tu hermana tiene only fans ganas 200
