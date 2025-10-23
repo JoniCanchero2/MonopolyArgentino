@@ -90,9 +90,13 @@ Tarjetas de suerte:
 12) Te cruzaste un vendedor de medias perdes $40 M
 13) Ganaste la rifa del dia del padre ganaste $50 B
 14) Dia del empleado municipal ganaste 1 turno B
-15) Mejoro la inflación todos ganan $100 B
+15) Mejoro la inflación (hay deflacion) todos ganan $100 B
 16) Cayo mercado pago todos pierden $100 M
 17) Pagas al FMI - $100 M 
 18) Argentina gana el mundial, feriado nacional, ganas un turno B
-19) Te engancharon con una menor perdes $200 M
-20) Descubriste que tu hermana tiene only fans ganas 200 B (*por tu silencio*) 
+19) Te engancharon con una menor perdes $200 M (y vas preso)
+20) Descubriste que tu hermana tiene only fans ganas 200 B (*por tu silencio*)
+--------------------------------------------------------------------------------------------------------------------
+21) Todos cayeron en un ponzi, el jugador mas blanco era el lider (el gana 300 y todos pierden 100)
+22) El uber manija te invito a dar una vuelta, vas hasta palermo
+23) Te agarro un acv por caminar tanto *perdes 1 turno* 
