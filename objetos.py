@@ -1,6 +1,6 @@
 class casilla():
-  def __init__(self, id_propuedad, nombre, color, propietario,valor_propiedad, valor_alquiler, cantidad_casas):
-    self.id_propuedad = id_propuedad
+  def __init__(self, id_propiedad, nombre, color, propietario,valor_propiedad, valor_alquiler, cantidad_casas):
+    self.id_propiedad = id_propiedad
     self.nombre = nombre
     self.color = color
     self.propietario = propietario
