@@ -1,6 +1,6 @@
 # MonopolyArgentino
 Juego de Monopoly tradicional basado en Argentina hecho en Python
-Por: Jonathan Ramirez, Mateo Navarro, Brandon Moreyra  y Axel Cavero\n
+Por: Jonathan Ramirez, Mateo Navarro, Brandon Moreyra  y Axel Cavero
 **Introducción:**
 
 El juego es una competencia de estrategia y gestión económica donde el objetivo es comprar todas las propiedades posibles y llevar a la bancarrota a los demás jugadores.
@@ -31,7 +31,7 @@ Las casillas de Luz y Agua tambien son comprables, el monto a pagar del jugador 
 
 Casilleros (40):
 
-cada casilero tendrá su: id, nombre, color de grupo
+Cada casilero tendrá su: id, nombre, color de grupo
 siempre y cuando no sean propiedades
 
 1) Inicial (Indica inicio y la vuelta completa del tablero)
@@ -79,14 +79,14 @@ Tarjetas de suerte:
 1) Miraste la hora en el lugar equivacado te robaron el celular -100 M
 2) Le ganaste a Tomy Munaretto +150 B
 3) Coimeaste un juez (vale para salir de la cárcel 1 vez) B
-4) Plantaron merluza en tu auto (vas a la cárcel) M
-5) Cobraste la asignacion ganas +100 B
+4) Plantaron merluza en tu chata (vas a la cárcel) M
+5) Cobraste la asignacion (*Ganaste una pension por invalidez*) ganas  +100 B
 6) Corralito de dolares perdes -150 M
-7) Feliz cumpleaños (cada jugador te da 50) B 
+7) Es tu cumpleaños (cada jugador te da 50) B 
 8) Tus compañeros te vendieron un curso...(le das 20 a cada jugador) M
 9) Visita al presidente (vas hasta Olivos, si pasa por la salida cobra el dinero) B
 10) Perdiste el bondi retrocedes 3 casilleros M
-11) Te paro transito perdes un turnos  M
+11) Te paro transito perdes un turno (*Te paro la policia para ser testigo, perdes un turno*) M
 12) Te cruzaste un vendedor de medias perdes $40 M
 13) Ganaste la rifa del dia del padre ganaste $50 B
 14) Dia del empleado municipal ganaste 1 turno B
@@ -95,4 +95,4 @@ Tarjetas de suerte:
 17) Pagas al FMI - $100 M 
 18) Argentina gana el mundial, feriado nacional, ganas un turno B
 19) Te engancharon con una menor perdes $200 M
-20) Descubriste que tu hermana tiene only fans ganas 200 B
+20) Descubriste que tu hermana tiene only fans ganas 200 B (*por tu silencio*) 
