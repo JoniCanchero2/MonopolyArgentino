@@ -96,7 +96,3 @@ Tarjetas de suerte:
 18) Argentina gana el mundial, feriado nacional, ganas un turno B
 19) Te engancharon con una menor perdes $200 M (y vas preso)
 20) Descubriste que tu hermana tiene only fans ganas 200 B (*por tu silencio*)
---------------------------------------------------------------------------------------------------------------------
-21) Todos cayeron en un ponzi, el jugador mas blanco era el lider (el gana 300 y todos pierden 100)
-22) El uber manija te invito a dar una vuelta, vas hasta palermo
-23) Te agarro un acv por caminar tanto *perdes 1 turno* 
