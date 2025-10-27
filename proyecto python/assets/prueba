@@ -14,12 +14,12 @@ def cargar_imagen_tk(ruta_imagen):
     """Carga una imagen usando Pillow."""
     try:
         # Verifica si el archivo existe
-        if not os.path.exists(ruta_imagen):
+        if not os.path.exists(https://github.com/JoniCanchero2/MonopolyArgentino/blob/48c4f74e05dae30173c81d6008687b5ea69883cb/proyecto%20python/assets/empanada.png):
             print(f"ERROR: No se encontró el archivo: {ruta_imagen}")
             print("Asegurate de que esté en la carpeta 'assets/'.")
             return None
             
-        img_pil = Image.open(ruta_imagen)
+        img_pil = Image.open(https://github.com/JoniCanchero2/MonopolyArgentino/blob/48c4f74e05dae30173c81d6008687b5ea69883cb/proyecto%20python/assets/empanada.png)
         img_pil.thumbnail((200, 200), Image.LANCZOS) # Redimensiona para la prueba
         return ImageTk.PhotoImage(img_pil)
         
@@ -37,7 +37,7 @@ canvas = tk.Canvas(root, width=TAMANO_VENTANA, height=TAMANO_VENTANA, bg='white'
 canvas.pack()
 
 # Cargar la imagen
-imagen_prueba_tk = cargar_imagen_tk(RUTA_IMAGEN)
+imagen_prueba_tk = cargar_imagen_tk(https://github.com/JoniCanchero2/MonopolyArgentino/blob/48c4f74e05dae30173c81d6008687b5ea69883cb/proyecto%20python/assets/empanada.png)
 
 if imagen_prueba_tk:
     # Dibuja la imagen en el centro del Canvas
