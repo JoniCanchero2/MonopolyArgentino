@@ -1,0 +1,68 @@
+{
+    "casillas":[
+        {
+          "id":1,
+          "nombre":"Inicio",
+          "casilla_especial": true
+         },
+        {
+           "id": 2,
+           "nombre": "Florencio Varela",
+           "color": "marron",
+           "valor_propiedad": 50,
+           "valor_alquiler": 10,
+           "casilla_especial": false
+        },
+        {
+            "id":3,
+            "nombre":"Impuesto Medio",
+            "monto": 100,
+            "casilla_especial": true
+        },
+        {
+            "id":4,
+            "nombre": "Temperley",
+            "color": "marron",
+            "valor_propiedad": 60,
+            "valor_alquiler": 10,
+            "casilla_especial": false
+        },
+        {
+            "id":5,
+            "nombre":"Suerte",
+            "casilla_especial": true
+        },
+        {
+            "id":6,
+            "nombre": "Lineas de Colectivos",
+            "valor_propiedad": 150,
+            "casilla_especial": true
+        },
+        {
+            "id":7,
+            "nombre": "Berazategui",
+            "color": "celeste",
+            "valor_propiedad": 100,
+            "valor_alquiler": 10,
+            "casilla_especial": false
+        },
+        {
+            "id":8,
+            "nombre": "Quilmes",
+            "color": "celeste",
+            "valor_propiedad": 110,
+            "valor_alquiler": 10,
+            "casilla_especial": false
+        },
+        {
+            "id":9,
+            "nombre":"Suerte",
+            "casilla_especial": true
+        },
+        {
+            "id":10,
+            "nombre":"Visita a la Cárcel",
+            "casilla_especial": true
+        }
+    ]
+}
