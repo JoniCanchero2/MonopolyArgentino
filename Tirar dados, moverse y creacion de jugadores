@@ -1,0 +1,55 @@
+import random
+
+
+class Monopoly():
+    def __init__ (self):
+        pass
+
+class Jugador(Monopoly):
+    contador_ids = 0
+    def __init__(self, dinero=None, posicion = None, propiedades_compradas=None):
+        self.__class__.contador_ids += 1
+        self.id_jugador = self.__class__.contador_ids
+        self.dinero = 1500
+        self.posicion = 1
+        self.propiedades_compradas = []
+    
+
+    def tirar_dados(self):
+        dado1 = random.randint(1,6)
+        print(f"El dado1:{dado1}")
+        dado2 = random.randint(1,6)
+        print(f"El dado2:{dado2}")
+        resultado = dado1+dado2
+        return resultado
+    
+    def mover_jugador(self):
+        nueva_posicion = self.tirar_dados()
+        self.posicion = (self.posicion + nueva_posicion) % len(range(40))
+        avanzo = nueva_posicion 
+        print(f"Avanzaste {avanzo}")
+        print(f"Estas en la casilla {self.posicion}")
+print("Bienvenido al Monopoly!")
+cantidad_jugadores = int(input("Ingrese la cantidad de jugadores: "))
+for jugador in range(cantidad_jugadores):
+    
+prueba = Jugador()
+salida = True
+while salida:
+    usar = input("Presione X para continuar  |||     Exit para salir: \n")
+    if usar.lower()=='x':
+        
+        tecla  = True
+        while tecla:
+            moverse = input("Presione C para tirar los dados: ")
+            if moverse.lower() == 'c':
+                prueba.mover_jugador()
+                tecla = False
+                # print(prueba.posicion)
+            else:
+                print("Tecla incorrecta")
+    elif usar.lower()=="exit":
+        salida= False
+    else:
+        print("Incorrecto.")
+        
