@@ -66,7 +66,97 @@ class Juego:
         else:
             # Para casillas especiales (por ahora solo mensaje)
             print(f"⚡ Casilla especial: {casilla.nombre}")
+
+            if casilla.nombre == "Impuesto Medio":
+                jugador.dinero -= casilla.monto
+                print(f"💸 {jugador.nombre} paga impuesto de ${casilla.monto}")
+
+            elif casilla.nombre == "Visita a la Cárcel":
+                print(f"🚓 {jugador.nombre} visita la cárcel (solo de paso)")
+
+            elif casilla.nombre == "Suerte":
+                self.procesar_carta_suerte(jugador)
+
+            elif "Lineas" in casilla.nombre:
+                self.procesar_transporte(jugador, casilla)
             # Aquí después agregarás impuestos, suerte, etc.
+
+    def procesar_carta_suerte(self, jugador):
+    #Cartas de suerte aleatorias"""
+        cartas = [
+            {"texto": "Corralito de dolares perdes", "monto": -150},
+            {"texto": "Ganaste la rifa del dia del padre ganaste", "monto": 50},
+            {"texto": "Encuentras dinero en la calle", "monto": 50},
+            {"texto": "Miraste la hora en el lugar equivacado te robaron el celular", "monto": -150},
+            {"texto": "Multa por exceso de velocidad", "monto": -50}
+        ]
+        carta = random.choice(cartas)
+        jugador.dinero += carta["monto"]
+        
+        if carta["monto"] > 0:
+            print(f"🎁 SUERTE: {carta['texto']} +${carta['monto']}")
+        else:
+            print(f"🎁 SUERTE: {carta['texto']} -${abs(carta['monto'])}")
+
+
+    def procesar_transporte(self, jugador, transporte):
+    #Procesa cualquier línea de transporte (todas funcionan igual)"""
+        if transporte.propietario is None:
+            # Ofrecer compra
+            if jugador.dinero >= transporte.valor_propiedad:
+                respuesta = input(f"¿Quieres comprar {transporte.nombre} por ${transporte.valor_propiedad}? (s/n): ")
+                if respuesta.lower() == 's':
+                    transporte.propietario = jugador
+                    jugador.dinero -= transporte.valor_propiedad
+                    jugador.propiedades_compradas.append(transporte)
+                    print(f"✅ {jugador.nombre} compró {transporte.nombre}")
+                    
+                    # Mostrar estrategia
+                    lineas_actuales = self.contar_lineas_transporte(jugador)
+                    print(f"   🎯 Ahora tienes {lineas_actuales} líneas de transporte")
+                    if lineas_actuales >= 2:
+                        print(f"   ⚡ ¡El alquiler de tus líneas ahora se multiplica!")
+            else:
+                print(f"❌ {jugador.nombre} no tiene suficiente dinero para {transporte.nombre}")
+        else:
+            # Pagar alquiler - depende de cuántas líneas tenga el dueño
+            if transporte.propietario != jugador:
+                alquiler = self.calcular_alquiler_transporte(transporte.propietario, transporte)
+                jugador.dinero -= alquiler
+                transporte.propietario.dinero += alquiler
+                
+                lineas_propietario = self.contar_lineas_transporte(transporte.propietario)
+                print(f"🚌 {jugador.nombre} paga ${alquiler} por usar {transporte.nombre}")
+                print(f"   📊 {transporte.propietario.nombre} tiene {lineas_propietario} líneas de transporte")
+
+    def contar_lineas_transporte(self, jugador):
+        ####Cuenta cuántas líneas de transporte tiene un jugador"""
+        # Busca cualquier propiedad que tenga "Linea de" en el nombre
+        lineas = 0
+        for propiedad in jugador.propiedades_compradas:
+            if "Lineas" in propiedad.nombre:
+                lineas += 1
+        return lineas
+
+    def calcular_alquiler_transporte(self, propietario, transporte):
+        """Calcula el alquiler basado en cuántas líneas tiene el dueño"""
+        lineas_propietario = self.contar_lineas_transporte(propietario)
+        
+        # Sistema de multiplicadores (como Monopoly real)
+        multiplicadores = {
+            1: 1,   # 1 línea: 25% del valor
+            2: 2,   # 2 líneas: 50% del valor  
+            3: 4,   # 3 líneas: 100% del valor
+            4: 8    # 4 líneas: 200% del valor
+        }
+        
+        multiplicador = multiplicadores.get(lineas_propietario, 1)
+        alquiler_base = transporte.valor_propiedad // 4  # 25% del valor como base
+        alquiler_final = alquiler_base * multiplicador
+        
+        return alquiler_final
+    
+
 
     def procesar_propiedad(self, jugador, propiedad):
         #Maneja la compra y alquiler de propiedades"""

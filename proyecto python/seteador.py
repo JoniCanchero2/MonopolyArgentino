@@ -25,7 +25,9 @@ class FabricaCasillas:
             # es una casilla especial
             if 'monto' in datos:
                 casilla.monto = datos['monto']
-            # acá hay que completar con más detalles 
+            # acá hay que completar con más detalles
+            if 'valor_propiedad' in datos:
+                casilla.valor_propiedad = datos.get('valor_propiedad', 0) 
             # cada tipo de casilla especial
         
         return casilla
@@ -57,6 +59,8 @@ def cargar_tablero_completo():
             #hasattr revisa si el atributo pedido existe
             if hasattr(casilla_obj, 'monto') and casilla_obj.monto > 0:
                 print(f"   └ Monto impuesto: ${casilla_obj.monto}")
+            elif hasattr(casilla_obj, 'valor_propiedad') and casilla_obj.valor_propiedad > 0:
+                print(f"   └ Valor transporte: ${casilla_obj.valor_propiedad}")
             else:
                 print(f"   └ Tipo especial: {casilla_obj.nombre}")
         
