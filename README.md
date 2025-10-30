@@ -97,3 +97,7 @@ Tarjetas de suerte:
 18) Argentina gana el mundial, feriado nacional, ganas un turno B
 19) Te engancharon con una menor perdes $200 M (y vas preso)
 20) Descubriste que tu hermana tiene only fans ganas 200 B (*por tu silencio*)
+
+
+
+https://gemini.google.com/share/455ba8d9bd2f
