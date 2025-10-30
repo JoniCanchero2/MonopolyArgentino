@@ -1,6 +1,7 @@
 # MonopolyArgentino
 Juego de Monopoly tradicional basado en Argentina hecho en Python
 Por: Jonathan Ramirez, Mateo Navarro, Brandon Moreyra  y Axel Cavero
+
 **Introducción:**
 
 El juego es una competencia de estrategia y gestión económica donde el objetivo es comprar todas las propiedades posibles y llevar a la bancarrota a los demás jugadores.
