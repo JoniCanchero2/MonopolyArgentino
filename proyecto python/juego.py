@@ -50,7 +50,7 @@ class Juego:
         print(f"🔄 Movió a: {nueva_casilla.nombre}")
 
         #### en esta parte se tiene que crear la jugabilidad ####
-        self.procesar_casilla(jugador, nueva_casilla)
+        self.procesar_casilla(jugador, nueva_casilla, dados)
 
         # prepara el siguiente turno
         self.turno_actual = (self.turno_actual + 1) % len(self.jugadores)
@@ -59,7 +59,7 @@ class Juego:
             
         return jugador
     
-    def procesar_casilla(self, jugador, casilla):
+    def procesar_casilla(self, jugador, casilla, dados):
     #Procesa lo que sucede cuando un jugador cae en una casilla"""
         if not casilla.casilla_especial:
             self.procesar_propiedad(jugador, casilla)
@@ -79,7 +79,10 @@ class Juego:
 
             elif "Lineas" in casilla.nombre:
                 self.procesar_transporte(jugador, casilla)
-            # Aquí después agregarás impuestos, suerte, etc.
+
+            elif "Compañía" in casilla.nombre:
+                self.procesar_servicio(jugador, casilla, dados)
+            # Aquí después agregarás impuestos, suerte, etc. procesar_casilla_especial
 
     def procesar_carta_suerte(self, jugador):
     #Cartas de suerte aleatorias"""
@@ -97,7 +100,6 @@ class Juego:
             print(f"🎁 SUERTE: {carta['texto']} +${carta['monto']}")
         else:
             print(f"🎁 SUERTE: {carta['texto']} -${abs(carta['monto'])}")
-
 
     def procesar_transporte(self, jugador, transporte):
     #Procesa cualquier línea de transporte (todas funcionan igual)"""
@@ -139,23 +141,81 @@ class Juego:
         return lineas
 
     def calcular_alquiler_transporte(self, propietario, transporte):
-        """Calcula el alquiler basado en cuántas líneas tiene el dueño"""
+        #Calcula el alquiler basado en cuántas líneas tiene el dueño"""
         lineas_propietario = self.contar_lineas_transporte(propietario)
         
-        # Sistema de multiplicadores (como Monopoly real)
-        multiplicadores = {
-            1: 1,   # 1 línea: 25% del valor
-            2: 2,   # 2 líneas: 50% del valor  
-            3: 4,   # 3 líneas: 100% del valor
-            4: 8    # 4 líneas: 200% del valor
-        }
+        # ✅ NUEVO SISTEMA: Alquiler base + $50 por cada línea adicional
+        alquiler_base = 50  # $50 de base por la primera línea
         
-        multiplicador = multiplicadores.get(lineas_propietario, 1)
-        alquiler_base = transporte.valor_propiedad // 4  # 25% del valor como base
-        alquiler_final = alquiler_base * multiplicador
+        # Cada línea adicional suma $50 al alquiler
+        alquiler_final = alquiler_base + (50 * (lineas_propietario - 1))
         
+        print(f"   📊 Dueño tiene {lineas_propietario} líneas → Alquiler: ${alquiler_final}")
+            
         return alquiler_final
     
+    def procesar_servicio(self, jugador, servicio, dados):
+        #Procesa las compañías de servicios (luz y agua)"""
+        # Asignar valor por defecto si de alguna manera no existe
+        if not hasattr(servicio, 'valor_propiedad') or servicio.valor_propiedad == 0:
+            servicio.valor_propiedad = 150
+            
+        if servicio.propietario is None:
+            # Ofrecer compra
+            if jugador.dinero >= servicio.valor_propiedad:
+                respuesta = input(f"¿Quieres comprar {servicio.nombre} por ${servicio.valor_propiedad}? (s/n): ")
+                if respuesta.lower() == 's':
+                    servicio.propietario = jugador
+                    jugador.dinero -= servicio.valor_propiedad
+                    jugador.propiedades_compradas.append(servicio)
+                    print(f"✅ {jugador.nombre} compró {servicio.nombre}")
+                    
+                    servicios_actuales = self.contar_servicios(jugador)
+                    print(f"   🎯 Ahora tienes {servicios_actuales} servicios")
+                    if servicios_actuales == 2:
+                        print(f"   ⚡ ¡Tienes el monopolio de servicios!")
+                else:
+                    print(f"❌ {jugador.nombre} decidió no comprar {servicio.nombre}")
+            else:
+                print(f"❌ {jugador.nombre} no tiene suficiente dinero para {servicio.nombre}")
+        else:
+            # Pagar por uso - depende de los dados y cuántos servicios tenga el dueño
+            if servicio.propietario != jugador:
+                pago = self.calcular_pago_servicio(servicio.propietario, dados)
+                jugador.dinero -= pago
+                servicio.propietario.dinero += pago
+                
+                servicios_propietario = self.contar_servicios(servicio.propietario)
+                print(f"💡 {jugador.nombre} paga ${pago} por uso de {servicio.nombre}")
+                print(f"   📊 {servicio.propietario.nombre} tiene {servicios_propietario} servicios")
+
+    def contar_servicios(self, jugador):
+        #Cuenta cuántas compañías de servicios tiene un jugador"""
+        servicios = 0
+        for propiedad in jugador.propiedades_compradas:
+            if "Compañía" in propiedad.nombre:
+                servicios += 1
+        return servicios
+    
+    def calcular_pago_servicio(self, propietario, dados):
+        #Calcula el pago por uso de servicios usando los dados originales"""
+        servicios_propietario = self.contar_servicios(propietario)
+        
+        print(f"🎲 Usando dados del movimiento: {dados}")
+        
+        # Multiplicador según cuántos servicios tiene el dueño
+        if servicios_propietario == 1:
+            multiplicador = 4   # 1 servicio: 4x dados
+        else:  # 2 servicios (monopolio)
+            multiplicador = 10  # 2 servicios: 10x dados
+        
+        pago = dados * multiplicador
+        
+        print(f"   📊 Dueño tiene {servicios_propietario} servicios → Multiplicador: x{multiplicador}")
+        
+        return pago
+
+
 
 
     def procesar_propiedad(self, jugador, propiedad):

@@ -28,6 +28,8 @@ class FabricaCasillas:
             # acá hay que completar con más detalles
             if 'valor_propiedad' in datos:
                 casilla.valor_propiedad = datos.get('valor_propiedad', 0) 
+            if 'tipo_servicio' in datos:
+                casilla.tipo_servicio = datos['tipo_servicio']
             # cada tipo de casilla especial
         
         return casilla

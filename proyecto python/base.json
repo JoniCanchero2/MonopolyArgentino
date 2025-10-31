@@ -61,7 +61,86 @@
         },
         {
             "id":10,
+            "nombre": "Lomas de Zamora",
+            "color": "celeste",
+            "valor_propiedad": 120,
+            "valor_alquiler": 10,
+            "casilla_especial": false
+        },
+        {
+            "id":11,
             "nombre":"Visita a la Cárcel",
+            "casilla_especial": true
+        },
+        {
+            "id":12,
+            "nombre": "Avellaneda",
+            "color": "Rosa",
+            "valor_propiedad": 140,
+            "valor_alquiler": 10,
+            "casilla_especial": false
+        },
+        {
+            "id":13,
+            "nombre":"Compañia de Luz",
+            "valor_propiedad": 150,
+            "casilla_especial": true,
+            "servicio_tipo": "agua"
+        },
+        {
+            "id":14,
+            "nombre": "Lanús",
+            "color": "Rosa",
+            "valor_propiedad": 150,
+            "valor_alquiler": 10,
+            "casilla_especial": false
+        },
+        {
+            "id":15,
+            "nombre": "La Tablada",
+            "color": "Rosa",
+            "valor_propiedad": 160,
+            "valor_alquiler": 10,
+            "casilla_especial": false
+        },
+        {
+            "id":16,
+            "nombre": "Lineas de Trenes",
+            "valor_propiedad": 150,
+            "casilla_especial": true
+        },
+        {
+            "id":17,
+            "nombre": "Moreno",
+            "color": "Naranja",
+            "valor_propiedad": 180,
+            "valor_alquiler": 10,
+            "casilla_especial": false
+        },
+        {
+            "id":18,
+            "nombre":"Suerte",
+            "casilla_especial": true
+        },
+        {
+            "id":19,
+            "nombre": "Loma Hermosa",
+            "color": "Naranja",
+            "valor_propiedad": 190,
+            "valor_alquiler": 10,
+            "casilla_especial": false
+        },
+        {
+            "id":20,
+            "nombre": "Hurlingham",
+            "color": "Naranja",
+            "valor_propiedad": 200,
+            "valor_alquiler": 10,
+            "casilla_especial": false
+        },
+        {
+            "id":21,
+            "nombre": "Descanso",
             "casilla_especial": true
         }
     ]
