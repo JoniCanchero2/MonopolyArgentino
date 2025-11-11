@@ -23,8 +23,14 @@ class Juego:
         print(f"🎲 Dados: {dado1} + {dado2} = {total}")
         return total
     
+    '''
+    COSAS QUE FALTAN:
+    -Construcción de casas ¬_¬
+    -Sistema de bancarrota
+    -Valor neto
 
-    ############
+    cuando esto se solucione se debe agregar la interfaz
+    '''
 
     def siguiente_turno(self):
         if not self.jugadores:
@@ -37,28 +43,129 @@ class Juego:
         print(f"\n{'='*50}")
         print(f"🎯 RONDA {self.ronda} - TURNO DE {jugador.nombre.upper()}")
         print(f"💰 Dinero: ${jugador.dinero}")
+        #revisa si está en la carcel
+        if jugador.en_carcel:
+            print(f"🔒 {jugador.nombre} está en la cárcel")
+            movimiento = self.procesar_turno_carcel(jugador)
 
-        # mostrar posición actual
-        casilla_actual = self.tablero.casillas[jugador.posicion]
-        print(f"📍 Posición actual: {casilla_actual.nombre}")
+            #revisa si ya terminó la condena 
+            if movimiento and not jugador.en_carcel:
+                nueva_pos = self.tablero.mover_jugador(jugador, movimiento)
+                nueva_casilla = self.tablero.casillas[nueva_pos]
+                print(f"🔄 Movió a: {nueva_casilla.nombre}")
+                self.procesar_casilla(jugador, nueva_casilla, movimiento)    
+        else:
+            # mostrar posición actual
+            casilla_actual = self.tablero.casillas[jugador.posicion]
+            print(f"📍 Posición actual: {casilla_actual.nombre}")
 
-        # tirar dados y mover
-        dados = self.tirar_dados()
-        nueva_pos = self.tablero.mover_jugador(jugador, dados)
-        nueva_casilla = self.tablero.casillas[nueva_pos]
-    
-        print(f"🔄 Movió a: {nueva_casilla.nombre}")
+            # tirar dados y mover
+            dados = self.tirar_dados()
+            nueva_pos = self.tablero.mover_jugador(jugador, dados)
+            nueva_casilla = self.tablero.casillas[nueva_pos]
+        
+            print(f"🔄 Movió a: {nueva_casilla.nombre}")
 
-        #### en esta parte se tiene que crear la jugabilidad ####
-        self.procesar_casilla(jugador, nueva_casilla, dados)
+            #### en esta parte se tiene que crear la jugabilidad ####
+            self.procesar_casilla(jugador, nueva_casilla, dados)
 
         # prepara el siguiente turno
         self.turno_actual = (self.turno_actual + 1) % len(self.jugadores)
         if self.turno_actual == 0:  # nueva ronda
             self.ronda += 1
-            
+                
         return jugador
     
+    def procesar_subasta(self, jugador_actual):
+        """Maneja el sistema de subastas/intercambios cuando un jugador cae en Subasta"""
+        print(f"🏛️  ¡SUBASTA! - Turno de {jugador_actual.nombre}")
+        print("Se abre el mercado de propiedades...")
+        
+        # Verificar si tiene propiedades para ofrecer
+        if not jugador_actual.propiedades_compradas:
+            print(f"❌ {jugador_actual.nombre} no tiene propiedades para ofrecer")
+            return
+        
+        # Jugador actual selecciona una propiedad para ofrecer
+        print(f"\n📦 PROPIEDADES DE {jugador_actual.nombre}:")
+        for i, prop in enumerate(jugador_actual.propiedades_compradas, 1):
+            print(f"   {i}. {prop.nombre} - Valor: ${prop.valor_propiedad}")
+        
+        while True:
+            try:
+                eleccion = int(input("Selecciona una propiedad para ofrecer (número): "))
+                if 1 <= eleccion <= len(jugador_actual.propiedades_compradas):
+                    propiedad_ofrecida = jugador_actual.propiedades_compradas[eleccion - 1]
+                    break
+                else:
+                    print("❌ Selección inválida")
+            except ValueError:
+                print("❌ Ingresa un número válido")
+        
+        print(f"✅ Ofreciendo: {propiedad_ofrecida.nombre}")
+
+        # Otros jugadores ofrecen
+        ofertas = []
+        for jugador in self.jugadores:
+            if jugador != jugador_actual and jugador.propiedades_compradas:
+                print(f"\n🔄 Turno de {jugador.nombre} para ofrecer:")
+                print("Propiedades disponibles:")
+                for i, prop in enumerate(jugador.propiedades_compradas, 1):
+                    print(f"   {i}. {prop.nombre} - Valor: ${prop.valor_propiedad}")
+                
+                # Preguntar si quiere ofertar
+                respuesta = input("¿Quieres hacer una oferta? (s/n): ")
+                if respuesta.lower() == 's':
+                    while True:
+                        try:
+                            eleccion = int(input("Selecciona propiedad para ofertar: "))
+                            if 1 <= eleccion <= len(jugador.propiedades_compradas):
+                                propiedad_ofertada = jugador.propiedades_compradas[eleccion - 1]
+                                ofertas.append({
+                                    'jugador': jugador,
+                                    'propiedad': propiedad_ofertada,
+                                    'valor': propiedad_ofertada.valor_propiedad
+                                })
+                                print(f"✅ {jugador.nombre} ofrece: {propiedad_ofertada.nombre}")
+                                break
+                            else:
+                                print("❌ Selección inválida")
+                        except ValueError:
+                            print("❌ Ingresa un número válido")
+        
+    # Mostrar ofertas
+        if not ofertas:
+            print("❌ Nadie hizo ofertas. Subasta cancelada.")
+            return
+        
+        print(f"\n🎯 OFERTAS RECIBIDAS por {propiedad_ofrecida.nombre}:")
+        for i, oferta in enumerate(ofertas, 1):
+            print(f"   {i}. {oferta['jugador'].nombre} ofrece: {oferta['propiedad'].nombre} (${oferta['valor']})")
+
+
+        #el jugador elije
+        print(f"\n🤔 {jugador_actual.nombre}, elige la oferta que prefieres:")
+        for i, oferta in enumerate(ofertas, 1):
+            print(f"   {i}. Aceptar {oferta['propiedad'].nombre} de {oferta['jugador'].nombre}")
+        print(f"   {len(ofertas) + 1}. Rechazar todas las ofertas")
+        
+        while True:
+            try:
+                eleccion = int(input("Tu elección: "))
+                if 1 <= eleccion <= len(ofertas):
+                    # Aceptar oferta seleccionada
+                    oferta_aceptada = ofertas[eleccion - 1]
+                    self.ejecutar_intercambio(jugador_actual, propiedad_ofrecida, 
+                                            oferta_aceptada['jugador'], oferta_aceptada['propiedad'])
+                    break
+                elif eleccion == len(ofertas) + 1:
+                    print("❌ Subasta cancelada - No se aceptó ninguna oferta")
+                    break
+                else:
+                    print("❌ Opción inválida")
+            except ValueError:
+                print("❌ Ingresa un número válido")
+
     def procesar_casilla(self, jugador, casilla, dados):
     #Procesa lo que sucede cuando un jugador cae en una casilla"""
         if not casilla.casilla_especial:
@@ -82,7 +189,175 @@ class Juego:
 
             elif "Compañía" in casilla.nombre:
                 self.procesar_servicio(jugador, casilla, dados)
+
+            elif casilla.nombre == "Carcel":
+                self.mandar_a_la_carcel(jugador)
+
+            elif casilla.nombre == "Subasta":  # ✅ NUEVO: Sistema de subastas
+                self.procesar_subasta(jugador)
             # Aquí después agregarás impuestos, suerte, etc. procesar_casilla_especial
+
+    def verificar_monopolio(self, jugador, color):
+        #Verifica si un jugador tiene monopolio de un color"""
+        propiedades_del_color = [prop for prop in jugador.propiedades_compradas 
+                            if prop.color == color]
+        
+        # Contar cuántas propiedades hay de ese color en el tablero
+        total_propiedades_color = len([casilla for casilla in self.tablero.casillas 
+                                    if hasattr(casilla, 'color') and casilla.color == color])
+        
+        if len(propiedades_del_color) == total_propiedades_color:
+            print(f"🎉 ¡{jugador.nombre} consiguió el MONOPOLIO de propiedades {color}!")
+            print(f"   El alquiler de estas propiedades se duplicará")
+            return True
+        return False
+
+    def calcular_alquiler_monopolio(self, propiedad):
+        """Calcula el alquiler considerando el monopolio"""
+        alquiler_base = propiedad.valor_alquiler
+        
+        if propiedad.propietario:
+            # Verificar si el dueño tiene monopolio de este color
+            propiedades_mismo_color = [prop for prop in propiedad.propietario.propiedades_compradas 
+                                    if prop.color == propiedad.color]
+            
+            # Contar total de propiedades de este color en el tablero
+            total_propiedades_color = len([casilla for casilla in self.tablero.casillas 
+                                        if hasattr(casilla, 'color') and casilla.color == propiedad.color])
+            
+            # Si tiene todas las propiedades del mismo color → MONOPOLIO
+            if len(propiedades_mismo_color) == total_propiedades_color:
+                alquiler_final = alquiler_base * 2  # Duplicar alquiler
+                print(f"   ⚡ MONOPOLIO {propiedad.color} → Alquiler duplicado: ${alquiler_base} → ${alquiler_final}")
+                return alquiler_final
+        
+        # Si no hay monopolio, alquiler normal
+        return alquiler_base
+
+    def contar_propiedades_por_color(self, jugador, color):
+        """Cuenta cuántas propiedades tiene un jugador de un color específico"""
+        return len([prop for prop in jugador.propiedades_compradas 
+                if prop.color == color])
+        
+    def ejecutar_intercambio(self, jugador1, prop1, jugador2, prop2):
+    #jecuta el intercambio de propiedades entre dos jugadores"""
+        print(f"\n🔄 EJECUTANDO INTERCAMBIO:")
+        print(f"   {jugador1.nombre} da: {prop1.nombre}")
+        print(f"   {jugador2.nombre} da: {prop2.nombre}")
+        
+        # Remover propiedades de los jugadores
+        jugador1.propiedades_compradas.remove(prop1)
+        jugador2.propiedades_compradas.remove(prop2)
+        
+        # Cambiar propietarios
+        prop1.propietario = jugador2
+        prop2.propietario = jugador1
+        
+        # Agregar propiedades a los nuevos dueños
+        jugador1.propiedades_compradas.append(prop2)
+        jugador2.propiedades_compradas.append(prop1)
+
+        bonificacion = 200
+        jugador1.dinero += bonificacion
+        jugador2.dinero += bonificacion
+        
+        print(f"✅ Intercambio exitoso!")
+        print(f"   {jugador1.nombre} ahora tiene: {prop2.nombre}")
+        print(f"   {jugador2.nombre} ahora tiene: {prop1.nombre}")
+        print(f"😎😎😎¡Ambos reciben 200!😎😎😎")
+
+    def mandar_a_la_carcel(self, jugador):
+        posicion_carcel = None
+        for i, casilla in enumerate(self.tablero.casillas):
+            if casilla.nombre == "Carcel":
+                posicion_carcel = i
+                break
+
+        if posicion_carcel is not None:
+            jugador.posicion = posicion_carcel
+            jugador.en_carcel = True
+            jugador.turnos_en_carcel = 0
+            print(f"🔒 {jugador.nombre} fue llevado a la cárcel")
+        else:
+            print("❌ Error: No se encontró la casilla de Cárcel")
+
+    def procesar_turno_carcel(self, jugador):
+    #Maneja el turno de un jugador que está en la cárcel"""
+        print(f"🔒 {jugador.nombre} está en la cárcel (turno {jugador.turnos_en_carcel + 1}/3)")
+        
+        opciones = []
+        
+        # Opción 1: Pagar fianza ($50)
+        opciones.append("Pagar fianza de $50")
+        
+        # Opción 2: Tirar dados para dobles
+        opciones.append("Tirar dados para conseguir dobles")
+        
+        # Opción 3: Usar carta de libertad (si tiene)
+        if jugador.cartas_libertad > 0:
+            opciones.append(f"Usar carta de salir de la cárcel gratis ({jugador.cartas_libertad} disponibles)")
+        
+        # Mostrar opciones
+        print("Opciones:")
+        for i, opcion in enumerate(opciones, 1):
+            print(f"   {i}. {opcion}")
+        
+        # Elegir opción
+        while True:
+            try:
+                eleccion = int(input("Elige una opción: "))
+                if 1 <= eleccion <= len(opciones):
+                    break
+                else:
+                    print("❌ Opción inválida")
+            except ValueError:
+                print("❌ Ingresa un número válido")
+        
+        movimiento = False
+        
+        # Procesar elección
+        if eleccion == 1:  # Pagar fianza
+            if jugador.dinero >= 50:
+                jugador.dinero -= 50
+                jugador.en_carcel = False
+                jugador.turnos_en_carcel = 0
+                print(f"✅ {jugador.nombre} pagó $50 de fianza y sale de la cárcel")
+            else:
+                print(f"❌ {jugador.nombre} no tiene $50 para pagar la fianza")
+        
+        elif eleccion == 2:  # Tirar dados
+            dado1 = random.randint(1, 6)
+            dado2 = random.randint(1, 6)
+            total = dado1 + dado2
+            print(f"🎲 Dados: {dado1} + {dado2} = {total}")
+            
+            if dado1 == dado2:
+                jugador.en_carcel = False
+                jugador.turnos_en_carcel = 0
+                print(f"🎯 ¡Dobles! {jugador.nombre} sale de la cárcel")
+                movimiento = total  # Retorna el movimiento para que el jugador se mueva
+            else:
+                jugador.turnos_en_carcel += 1
+                print(f"❌ No salieron dobles. Te quedan {3 - jugador.turnos_en_carcel} intentos")
+        
+        elif eleccion == 3 and jugador.cartas_libertad > 0:  # Usar carta
+            jugador.cartas_libertad -= 1
+            jugador.en_carcel = False
+            jugador.turnos_en_carcel = 0
+            print(f"🎫 {jugador.nombre} usa carta de salir de la cárcel gratis")
+        
+        # Verificar si lleva 3 turnos en cárcel (obligatorio salir)
+        if jugador.en_carcel and jugador.turnos_en_carcel >= 3:
+            print(f"⏰ {jugador.nombre} lleva 3 turnos en cárcel. Debe pagar $50 para salir")
+            if jugador.dinero >= 50:
+                jugador.dinero -= 50
+                jugador.en_carcel = False
+                jugador.turnos_en_carcel = 0
+                print(f"✅ {jugador.nombre} paga $50 y sale de la cárcel")
+            else:
+                print(f"❌ {jugador.nombre} no tiene dinero. Permanece en cárcel")
+        
+        return movimiento
 
     def procesar_carta_suerte(self, jugador):
     #Cartas de suerte aleatorias"""
@@ -215,9 +490,6 @@ class Juego:
         
         return pago
 
-
-
-
     def procesar_propiedad(self, jugador, propiedad):
         #Maneja la compra y alquiler de propiedades"""
         if propiedad.propietario is None:
@@ -229,6 +501,8 @@ class Juego:
                     jugador.dinero -= propiedad.valor_propiedad
                     jugador.propiedades_compradas.append(propiedad)
                     print(f"✅ {jugador.nombre} compró {propiedad.nombre}")
+                    # verifiva monopolio
+                    self.verificar_monopolio(jugador, propiedad.color)
                 else:
                     print(f"❌ {jugador.nombre} decidió no comprar {propiedad.nombre}")
             else:
@@ -236,7 +510,7 @@ class Juego:
         else:
             # Pagar alquiler
             if propiedad.propietario != jugador:
-                alquiler = propiedad.valor_alquiler
+                alquiler = self.calcular_alquiler_monopolio(propiedad)
                 jugador.dinero -= alquiler
                 propiedad.propietario.dinero += alquiler
                 print(f"💰 {jugador.nombre} paga ${alquiler} de alquiler a {propiedad.propietario.nombre}")
@@ -245,23 +519,44 @@ class Juego:
         print(f"\n📊 ESTADO GENERAL - Ronda {self.ronda}")
         for jugador in self.jugadores:
             casilla = self.tablero.casillas[jugador.posicion]
-            print(f"   {jugador.nombre}: ${jugador.dinero} | Pos: {casilla.nombre}")
+            estado_carcel = " (ENCARCELADO)" if jugador.en_carcel else ""
+            cartas = f" | Cartas libertad: {jugador.cartas_libertad}" if jugador.cartas_libertad > 0 else ""
+
+            monopolios = self.obtener_monopolios(jugador)
+            monopolios_str = f" | Monopolios: {', '.join(monopolios)}" if monopolios else ""
+            print(f"   {jugador.nombre}: ${jugador.dinero} | Pos: {casilla.nombre}{estado_carcel}{cartas}{monopolios_str}")
+        
+    def obtener_monopolios(self, jugador):
+        """Obtiene la lista de colores donde el jugador tiene monopolio"""
+        monopolios = []
+        colores_revisados = set()
+        
+        for propiedad in jugador.propiedades_compradas:
+            if hasattr(propiedad, 'color') and propiedad.color not in colores_revisados:
+                colores_revisados.add(propiedad.color)
+                
+                # Verificar si tiene monopolio de este color
+                propiedades_color = [prop for prop in jugador.propiedades_compradas 
+                                if prop.color == propiedad.color]
+                
+                total_en_tablero = len([casilla for casilla in self.tablero.casillas 
+                                    if hasattr(casilla, 'color') and casilla.color == propiedad.color])
+                
+                if len(propiedades_color) == total_en_tablero:
+                    monopolios.append(propiedad.color)
+        
+        return monopolios
 
     
 # Función de prueba
 def probar_sistema_turnos():
     juego = Juego()
     
-    # Agregar jugadores
-    '''
-    juego.agregar_jugador("Ana")
-    juego.agregar_jugador("Luis")
-    juego.agregar_jugador("Carlos")
-    '''
+    
     #elige la cantiadad de turnos
     turnos=int(input("Cantidad de turnos: "))
 
-    for i in range(3):
+    for i in range(2):
         nombre = input("Ingresa nombre del jugador: ")
         juego.agregar_jugador(nombre)
         

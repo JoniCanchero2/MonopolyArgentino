@@ -17,6 +17,11 @@ class Jugador:
         self.dinero = dinero
         self.posicion = posicion
         self.propiedades_compradas = propiedades_compradas if propiedades_compradas else []
+        #para la carcel
+        self.en_carcel = False
+        self.turnos_en_carcel = 0
+        self.turnos_sin_tirar = 0  
+        self.cartas_libertad = 0
 
 class Tablero:
     def __init__(self):

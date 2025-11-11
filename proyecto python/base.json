@@ -1,5 +1,6 @@
 {
     "casillas":[
+        
         {
           "id":1,
           "nombre":"Inicio",
@@ -72,8 +73,7 @@
             "nombre":"Visita a la Cárcel",
             "casilla_especial": true
         },
-        {
-            "id":12,
+        {    "id":12,
             "nombre": "Avellaneda",
             "color": "Rosa",
             "valor_propiedad": 140,
@@ -85,7 +85,7 @@
             "nombre":"Compañia de Luz",
             "valor_propiedad": 150,
             "casilla_especial": true,
-            "servicio_tipo": "agua"
+            "servicio_tipo": "luz"
         },
         {
             "id":14,
@@ -137,11 +137,25 @@
             "valor_propiedad": 200,
             "valor_alquiler": 10,
             "casilla_especial": false
-        },
+        }, 
         {
             "id":21,
-            "nombre": "Descanso",
+            "nombre": "Subasta",
+            "casilla_especial": true
+        },
+        {
+            "id":30,
+            "nombre": "Vicente Lopez",
+            "color": "Amarillo",
+            "valor_propiedad": 280,
+            "valor_alquiler": 10,
+            "casilla_especial": false
+        },
+        {
+            "id":31,
+            "nombre": "Carcel",
             "casilla_especial": true
         }
+        
     ]
 }
