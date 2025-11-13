@@ -1,5 +1,5 @@
 class Casilla:
-    def __init__(self, id_propiedad, nombre, color=None, propietario=None, valor_propiedad=0, valor_alquiler=0, cantidad_casas=0, casilla_especial=False, monto=0):
+    def __init__(self, id_propiedad, nombre, color=None, propietario=None, valor_propiedad=0, valor_alquiler=0, cantidad_casas=0, casilla_especial=False, monto=0, valor_casa=0):
         self.id_propiedad = id_propiedad
         self.nombre = nombre
         self.color = color
@@ -9,6 +9,8 @@ class Casilla:
         self.cantidad_casas = cantidad_casas
         self.casilla_especial = casilla_especial
         self.monto = monto
+        self.valor_casa = valor_casa
+
 
 class Jugador:
     def __init__(self, id_jugador, nombre, dinero, posicion=0, propiedades_compradas=None):

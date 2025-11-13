@@ -9,9 +9,10 @@
         {
            "id": 2,
            "nombre": "Florencio Varela",
-           "color": "marron",
+           "color": "Marron",
            "valor_propiedad": 50,
            "valor_alquiler": 10,
+           "valor_casa" : 50,
            "casilla_especial": false
         },
         {
@@ -23,9 +24,10 @@
         {
             "id":4,
             "nombre": "Temperley",
-            "color": "marron",
+            "color": "Marron",
             "valor_propiedad": 60,
             "valor_alquiler": 10,
+            "valor_casa" : 50,
             "casilla_especial": false
         },
         {
@@ -42,17 +44,19 @@
         {
             "id":7,
             "nombre": "Berazategui",
-            "color": "celeste",
+            "color": "Celeste",
             "valor_propiedad": 100,
             "valor_alquiler": 10,
+            "valor_casa" : 50,
             "casilla_especial": false
         },
         {
             "id":8,
             "nombre": "Quilmes",
-            "color": "celeste",
+            "color": "Celeste",
             "valor_propiedad": 110,
             "valor_alquiler": 10,
+            "valor_casa" : 50,
             "casilla_especial": false
         },
         {
@@ -63,9 +67,10 @@
         {
             "id":10,
             "nombre": "Lomas de Zamora",
-            "color": "celeste",
+            "color": "Celeste",
             "valor_propiedad": 120,
             "valor_alquiler": 10,
+            "valor_casa" : 50,
             "casilla_especial": false
         },
         {
@@ -78,6 +83,7 @@
             "color": "Rosa",
             "valor_propiedad": 140,
             "valor_alquiler": 10,
+            "valor_casa" : 60,
             "casilla_especial": false
         },
         {
@@ -93,6 +99,7 @@
             "color": "Rosa",
             "valor_propiedad": 150,
             "valor_alquiler": 10,
+            "valor_casa" : 60,
             "casilla_especial": false
         },
         {
@@ -101,6 +108,7 @@
             "color": "Rosa",
             "valor_propiedad": 160,
             "valor_alquiler": 10,
+            "valor_casa" : 60,
             "casilla_especial": false
         },
         {
@@ -115,6 +123,7 @@
             "color": "Naranja",
             "valor_propiedad": 180,
             "valor_alquiler": 10,
+            "valor_casa" : 60,
             "casilla_especial": false
         },
         {
@@ -128,6 +137,7 @@
             "color": "Naranja",
             "valor_propiedad": 190,
             "valor_alquiler": 10,
+            "valor_casa" : 60,
             "casilla_especial": false
         },
         {
@@ -136,6 +146,7 @@
             "color": "Naranja",
             "valor_propiedad": 200,
             "valor_alquiler": 10,
+            "valor_casa" : 60,
             "casilla_especial": false
         }, 
         {
@@ -144,18 +155,140 @@
             "casilla_especial": true
         },
         {
+            "id":22,
+            "nombre": "Villa Bosch",
+            "color": "Rojo",
+            "valor_propiedad": 220,
+            "valor_alquiler": 10,
+            "valor_casa" : 90,
+            "casilla_especial": false
+        },
+        {
+            "id":23,
+            "nombre":"Impuesto rompeojete somos comunistas oligarca sorete",
+            "monto": 500,
+            "casilla_especial": true
+        },
+        {
+            "id":24,
+            "nombre":"Compañia de Agua",
+            "valor_propiedad": 150,
+            "casilla_especial": true,
+            "servicio_tipo": "agua"
+        },
+        {
+            "id":25,
+            "nombre": "Tigre",
+            "color": "Rojo",
+            "valor_propiedad": 240,
+            "valor_alquiler": 10,
+            "valor_casa" : 90,
+            "casilla_especial": false
+        },
+        {
+            "id":26,
+            "nombre": "Lineas de Barcos",
+            "valor_propiedad": 150,
+            "casilla_especial": true
+        },
+        {
+            "id":27,
+            "nombre": "San Isidro",
+            "color": "Amarillo",
+            "valor_propiedad": 260,
+            "valor_alquiler": 10,
+            "valor_casa" : 90,
+            "casilla_especial": false
+        },
+        {
+            "id":28,
+            "nombre": "Olivos",
+            "color": "Amarillo",
+            "valor_propiedad": 270,
+            "valor_alquiler": 10,
+            "valor_casa" : 90,
+            "casilla_especial": false
+        },
+        {
+            "id":29,
+            "nombre":"Suerte",
+            "casilla_especial": true
+        },
+        {
             "id":30,
             "nombre": "Vicente Lopez",
             "color": "Amarillo",
             "valor_propiedad": 280,
             "valor_alquiler": 10,
+            "valor_casa" : 90,
             "casilla_especial": false
         },
         {
             "id":31,
             "nombre": "Carcel",
             "casilla_especial": true
+        },
+        {
+            "id":32,
+            "nombre": "Devoto",
+            "color": "Verde",
+            "valor_propiedad": 300,
+            "valor_alquiler": 10,
+            "valor_casa" : 120,
+            "casilla_especial": false
+        },
+        {
+            "id":33,
+            "nombre": "Nuñez",
+            "color": "Verde",
+            "valor_propiedad": 310,
+            "valor_alquiler": 10,
+            "valor_casa" : 120,
+            "casilla_especial": false
+        },
+        {
+            "id":34,
+            "nombre":"Suerte",
+            "casilla_especial": true
+        },
+        {
+            "id":35,
+            "nombre": "Belgrano",
+            "color": "Verde",
+            "valor_propiedad": 320,
+            "valor_alquiler": 10,
+            "valor_casa" : 120,
+            "casilla_especial": false
+        },
+        {
+            "id":36,
+            "nombre": "Lineas de Barcos",
+            "valor_propiedad": 150,
+            "casilla_especial": true
+        },
+        {
+            "id":37,
+            "nombre":"Suerte",
+            "casilla_especial": true
+        },
+        {
+            "id":38,
+            "nombre": "Palermo",
+            "color": "Azul",
+            "valor_propiedad": 350,
+            "valor_alquiler": 10,
+            "valor_casa" : 120,
+            "casilla_especial": false
+        },
+        {
+            "id":40,
+            "nombre": "Puerto Madero",
+            "color": "Azul",
+            "valor_propiedad": 400,
+            "valor_alquiler": 10,
+            "valor_casa" : 120,
+            "casilla_especial": false
         }
-        
+              
     ]
 }
