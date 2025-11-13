@@ -1,0 +1,494 @@
+##ESTO SIRVE COMO BASE HAY QUE MODIFICAR Y AGREGAR LA LOGICA
+
+
+import random
+import pygame
+import time
+
+# --- CONFIGURACIÓN E INICIALIZACIÓN DE PYGAME ---
+pygame.init()
+pygame.display.set_caption("Monopoly Argentino - Clases")
+
+# Dimensiones y Colores
+ANCHO = 660
+ALTURA = 660
+WHITE = (255, 255, 255)
+BLACK = (0, 0, 0)
+BLUE = (0, 0, 255)
+
+# Colores para las fichas de jugadores
+COLOR_FICHA_1 = (0, 0, 255)     # Azul
+COLOR_FICHA_2 = (200, 0, 0)     # Rojo
+COLOR_FICHA_3 = (0, 150, 0)     # Verde Oscuro
+COLOR_FICHA_4 = (255, 165, 0)   # Naranja
+
+PANTALLA = pygame.display.set_mode((ANCHO, ALTURA))
+CLOCK = pygame.time.Clock()
+FPS = 60
+ESPACIO = 60
+BORDE = ANCHO - ESPACIO # 600
+
+# --- DATA DEL TABLERO (40 CASILLAS) ---
+TABLERO_DATA = [
+    {"nombre": "SALIDA", "tipo": "Salida", "precio": 0, "alquiler": 0, "color_grupo": (0, 0, 0), "propietario": None},
+    {"nombre": "Tierra del Fuego", "tipo": "Propiedad", "precio": 60, "alquiler": 2, "color_grupo": (139, 69, 19), "propietario": None},
+    {"nombre": "CAJA COMUNIDAD", "tipo": "Comunidad", "precio": 0, "alquiler": 0, "color_grupo": (255, 255, 255), "propietario": None},
+    {"nombre": "Santa Cruz", "tipo": "Propiedad", "precio": 60, "alquiler": 4, "color_grupo": (139, 69, 19), "propietario": None},
+    {"nombre": "IMPUESTO DGR", "tipo": "Impuesto", "precio": 0, "alquiler": 200, "color_grupo": (0, 0, 0), "propietario": None},
+    {"nombre": "Est. Retiro", "tipo": "Ferrocarril", "precio": 200, "alquiler": 25, "color_grupo": (0, 0, 0), "propietario": None},
+    {"nombre": "Chubut", "tipo": "Propiedad", "precio": 100, "alquiler": 6, "color_grupo": (173, 216, 230), "propietario": None},
+    {"nombre": "SUERTE", "tipo": "Suerte", "precio": 0, "alquiler": 0, "color_grupo": (255, 255, 255), "propietario": None},
+    {"nombre": "Neuquén", "tipo": "Propiedad", "precio": 100, "alquiler": 6, "color_grupo": (173, 216, 230), "propietario": None},
+    {"nombre": "Río Negro", "tipo": "Propiedad", "precio": 120, "alquiler": 8, "color_grupo": (173, 216, 230), "propietario": None},
+    {"nombre": "CÁRCEL", "tipo": "Cárcel", "precio": 0, "alquiler": 0, "color_grupo": (0, 0, 0), "propietario": None},
+    {"nombre": "La Pampa", "tipo": "Propiedad", "precio": 140, "alquiler": 10, "color_grupo": (255, 0, 0), "propietario": None},
+    {"nombre": "Edesur", "tipo": "Servicio", "precio": 150, "alquiler": 0, "color_grupo": (0, 0, 0), "propietario": None},
+    {"nombre": "Mendoza", "tipo": "Propiedad", "precio": 140, "alquiler": 10, "color_grupo": (255, 0, 0), "propietario": None},
+    {"nombre": "San Juan", "tipo": "Propiedad", "precio": 160, "alquiler": 12, "color_grupo": (255, 0, 0), "propietario": None},
+    {"nombre": "Est. Constitución", "tipo": "Ferrocarril", "precio": 200, "alquiler": 25, "color_grupo": (0, 0, 0), "propietario": None},
+    {"nombre": "San Luis", "tipo": "Propiedad", "precio": 180, "alquiler": 14, "color_grupo": (255, 165, 0), "propietario": None},
+    {"nombre": "CAJA COMUNIDAD", "tipo": "Comunidad", "precio": 0, "alquiler": 0, "color_grupo": (255, 255, 255), "propietario": None},
+    {"nombre": "La Rioja", "tipo": "Propiedad", "precio": 180, "alquiler": 14, "color_grupo": (255, 165, 0), "propietario": None},
+    {"nombre": "Catamarca", "tipo": "Propiedad", "precio": 200, "alquiler": 16, "color_grupo": (255, 165, 0), "propietario": None},
+    {"nombre": "DESCANSO GRATIS", "tipo": "Descanso", "precio": 0, "alquiler": 0, "color_grupo": (0, 0, 0), "propietario": None},
+    {"nombre": "Córdoba", "tipo": "Propiedad", "precio": 220, "alquiler": 18, "color_grupo": (255, 255, 0), "propietario": None},
+    {"nombre": "SUERTE", "tipo": "Suerte", "precio": 0, "alquiler": 0, "color_grupo": (255, 255, 255), "propietario": None},
+    {"nombre": "Santa Fe", "tipo": "Propiedad", "precio": 220, "alquiler": 18, "color_grupo": (255, 255, 0), "propietario": None},
+    {"nombre": "Entre Ríos", "tipo": "Propiedad", "precio": 240, "alquiler": 20, "color_grupo": (255, 255, 0), "propietario": None},
+    {"nombre": "Est. Once", "tipo": "Ferrocarril", "precio": 200, "alquiler": 25, "color_grupo": (0, 0, 0), "propietario": None},
+    {"nombre": "Tucumán", "tipo": "Propiedad", "precio": 260, "alquiler": 22, "color_grupo": (0, 128, 0), "propietario": None},
+    {"nombre": "Santiago del Estero", "tipo": "Propiedad", "precio": 260, "alquiler": 22, "color_grupo": (0, 128, 0), "propietario": None},
+    {"nombre": "Aguas Argentinas", "tipo": "Servicio", "precio": 150, "alquiler": 0, "color_grupo": (0, 0, 0), "propietario": None},
+    {"nombre": "Salta", "tipo": "Propiedad", "precio": 280, "alquiler": 24, "color_grupo": (0, 128, 0), "propietario": None},
+    {"nombre": "IR A CÁRCEL", "tipo": "IrACárcel", "precio": 0, "alquiler": 0, "color_grupo": (0, 0, 0), "propietario": None},
+    {"nombre": "Misiones", "tipo": "Propiedad", "precio": 300, "alquiler": 26, "color_grupo": (0, 0, 255), "propietario": None},
+    {"nombre": "Corrientes", "tipo": "Propiedad", "precio": 300, "alquiler": 26, "color_grupo": (0, 0, 255), "propietario": None},
+    {"nombre": "CAJA COMUNIDAD", "tipo": "Comunidad", "precio": 0, "alquiler": 0, "color_grupo": (255, 255, 255), "propietario": None},
+    {"nombre": "Formosa", "tipo": "Propiedad", "precio": 320, "alquiler": 28, "color_grupo": (0, 0, 255), "propietario": None},
+    {"nombre": "Est. Dellepiane", "tipo": "Ferrocarril", "precio": 200, "alquiler": 25, "color_grupo": (0, 0, 0), "propietario": None},
+    {"nombre": "SUERTE", "tipo": "Suerte", "precio": 0, "alquiler": 0, "color_grupo": (255, 255, 255), "propietario": None},
+    {"nombre": "Chaco", "tipo": "Propiedad", "precio": 350, "alquiler": 35, "color_grupo": (128, 0, 128), "propietario": None},
+    {"nombre": "IMPUESTO IVA", "tipo": "Impuesto", "precio": 0, "alquiler": 100, "color_grupo": (0, 0, 0), "propietario": None},
+    {"nombre": "Buenos Aires", "tipo": "Propiedad", "precio": 400, "alquiler": 50, "color_grupo": (128, 0, 128), "propietario": None}
+]
+
+# --- ASSETS (Carga de Fichas) ---
+TAMANO_FICHA = (30, 30)
+try:
+    termidor_img = pygame.image.load("termidor.png").convert_alpha()
+    termidor_ficha = pygame.transform.scale(termidor_img, TAMANO_FICHA)
+except pygame.error:
+    print("WARNING: termidor.png no se encontró. Usando un cuadrado de color de reserva.")
+    termidor_ficha = pygame.Surface(TAMANO_FICHA)
+    termidor_ficha.fill(COLOR_FICHA_1)
+
+JUGADORES_INICIAL = [
+    {"id": 1, "nombre": "Jugador 1 (Termidor)", "dinero": 1500, "posicion": 0, "color": COLOR_FICHA_1, "ficha_img": termidor_ficha},
+    {"id": 2, "nombre": "Jugador 2 (Rojo)", "dinero": 1500, "posicion": 0, "color": COLOR_FICHA_2, "ficha_img": None},
+    {"id": 3, "nombre": "Jugador 3 (Verde)", "dinero": 1500, "posicion": 0, "color": COLOR_FICHA_3, "ficha_img": None},
+]
+
+# Crear fichas de color simple para los jugadores 2 y 3
+for jugador in JUGADORES_INICIAL:
+    if jugador["ficha_img"] is None:
+        ficha = pygame.Surface(TAMANO_FICHA)
+        ficha.fill(jugador["color"])
+        jugador["ficha_img"] = ficha
+
+# --- CONFIGURACIÓN DE FUENTES ---
+try:
+    FONT = pygame.font.SysFont('Arial', 24)
+    SMALL_FONT = pygame.font.SysFont('Arial', 14)
+    TINY_FONT = pygame.font.SysFont('Arial', 10)
+    STATUS_FONT = pygame.font.SysFont('Arial', 16)
+except:
+    FONT = pygame.font.Font(None, 30)
+    SMALL_FONT = pygame.font.Font(None, 18)
+    TINY_FONT = pygame.font.Font(None, 12)
+    STATUS_FONT = pygame.font.Font(None, 20)
+
+# --- CLASES ---
+
+class Player:
+    """Representa a un jugador en el juego."""
+    def __init__(self, id, nombre, dinero, posicion, color, ficha_img):
+        self.id = id
+        self.nombre = nombre
+        self.dinero = dinero
+        self.posicion = posicion
+        self.color = color
+        self.activo = True
+        self.ficha_img = ficha_img
+
+    def move(self, roll):
+        """Mueve al jugador y retorna si pasó por SALIDA."""
+        old_pos = self.posicion
+        self.posicion = (old_pos + roll) % 40
+        return old_pos + roll > 39
+    
+    def pay(self, amount):
+        """Paga una cantidad de dinero."""
+        self.dinero -= amount
+        return self.dinero <= 0 # Retorna True si el jugador queda en bancarrota
+
+    def receive_money(self, amount):
+        """Recibe una cantidad de dinero."""
+        self.dinero += amount
+
+
+class Game:
+    """Clase principal que gestiona el estado y la lógica del juego Monopoly."""
+    def __init__(self, board_data, players_data, pantalla, ancho, altura, tamano_ficha, fonts):
+        self.board = board_data
+        self.players = self._initialize_players(players_data)
+        self.pantalla = pantalla
+        self.ANCHO = ancho
+        self.ALTURA = altura
+        self.TAMANO_FICHA = tamano_ficha
+        self.ESPACIO = 60
+        self.BORDE = self.ANCHO - self.ESPACIO
+        
+        self.FONT, self.SMALL_FONT, self.TINY_FONT, self.STATUS_FONT = fonts
+        
+        self.current_turn_index = 0
+        self.current_player = self.players[0]
+        self.current_message = f"Turno de {self.current_player.nombre}. Presiona 'S' para tirar los dados."
+        self.purchase_state = False
+        self.game_over = False
+
+    def _initialize_players(self, players_data):
+        """Crea instancias de Player a partir de los datos iniciales."""
+        return [Player(
+            p_data["id"], 
+            p_data["nombre"], 
+            p_data["dinero"], 
+            p_data["posicion"], 
+            p_data["color"], 
+            p_data["ficha_img"]
+        ) for p_data in players_data]
+
+    def roll_dice(self):
+        """Simula la tirada de dados."""
+        if self.game_over:
+            self.current_message = "El juego ha terminado."
+            return 0
+
+        dado1 = random.randint(1, 6)
+        dado2 = random.randint(1, 6)
+        roll = dado1 + dado2
+        
+        # Muestra la tirada de dados
+        self.current_message = f"Turno de {self.current_player.nombre}. ¡Dados: {dado1} + {dado2} = {roll}!"
+        self.purchase_state = False
+        return roll
+
+    def next_turn(self):
+        """Pasa el turno al siguiente jugador activo."""
+        
+        # 1. Chequear si el juego terminó
+        jugadores_activos = [p for p in self.players if p.activo]
+        if len(jugadores_activos) <= 1:
+            self.game_over = True
+            if len(jugadores_activos) == 1:
+                self.current_message = f"¡{jugadores_activos[0].nombre} ha ganado el juego!"
+            else:
+                self.current_message = "¡Todos han quedado en bancarrota! Fin del juego."
+            return
+
+        # 2. Pasar al siguiente índice activo
+        while True:
+            self.current_turn_index = (self.current_turn_index + 1) % len(self.players)
+            self.current_player = self.players[self.current_turn_index]
+            
+            if self.current_player.activo:
+                self.current_message = f"Turno de {self.current_player.nombre}. Presiona 'S' para tirar los dados."
+                self.purchase_state = False
+                break
+
+    def handle_bankruptcy(self, player):
+        """Maneja la lógica de la bancarrota."""
+        player.activo = False
+        self.current_message = f"¡🚨 {player.nombre} ha quebrado y es ELIMINADO del juego! 🚨"
+        
+        # Las propiedades vuelven a ser sin dueño
+        for i, casilla in enumerate(self.board):
+            if casilla["propietario"] == player.id:
+                self.board[i]["propietario"] = None
+        
+        player.dinero = 0
+        self.next_turn()
+
+    def handle_interaction(self):
+        """Maneja lo que sucede al caer en una casilla, incluyendo pago de alquiler/impuestos."""
+        player = self.current_player
+        posicion = player.posicion
+        casilla = self.board[posicion]
+        
+        self.current_message += f" Caíste en {casilla['nombre']}."
+        
+        if casilla["tipo"] in ["Propiedad", "Ferrocarril", "Servicio"]:
+            
+            # 1. No tiene dueño: Ofrecer compra
+            if casilla["propietario"] is None:
+                if player.dinero >= casilla["precio"]:
+                    self.current_message += f" ¡{casilla['nombre']} no tiene dueño! Precio: ${casilla['precio']}. (B/N)"
+                    self.purchase_state = True
+                else:
+                    self.current_message += f" ¡{casilla['nombre']} no tiene dueño! No tienes suficiente dinero ($ {casilla['precio']})."
+            
+            # 2. Tiene dueño (otro jugador): Cobrar alquiler y transferir dinero
+            elif casilla["propietario"] != player.id:
+                alquiler = casilla["alquiler"]
+                
+                # Intentar pagar
+                if player.pay(alquiler):
+                    self.handle_bankruptcy(player)
+                    return # Detiene la interacción si hay quiebra
+                
+                propietario_obj = next((p for p in self.players if p.id == casilla["propietario"]), None)
+                
+                # Si el dueño existe y está activo, recibe el dinero
+                if propietario_obj and propietario_obj.activo:
+                    propietario_obj.receive_money(alquiler)
+                    self.current_message += f" ¡{casilla['nombre']} es de {propietario_obj.nombre}! Pagaste alquiler: ${alquiler}. ({propietario_obj.nombre} recibe el pago)."
+                else:
+                    self.current_message += f" Pagaste alquiler: ${alquiler}. (Dueño no encontrado o inactivo)."
+            
+            # 3. Es tuya
+            else:
+                self.current_message += f" ¡Bienvenido a tu propiedad: {casilla['nombre']}!"
+
+        elif casilla["tipo"] == "Impuesto":
+            impuesto = casilla["alquiler"]
+            if player.pay(impuesto):
+                self.handle_bankruptcy(player)
+                return
+            self.current_message += f" 💰 ¡IMPUESTO! Pagaste: ${impuesto}."
+
+        elif casilla["tipo"] in ["Suerte", "Comunidad"]:
+            self.current_message += f" ❓ ¡Caíste en {casilla['nombre']}! (Sin efecto, pasa el turno)"
+            
+        elif casilla["tipo"] == "IrACárcel":
+            player.posicion = 10 # Mover a la Cárcel
+            self.current_message += f" 🚓 ¡IR A CÁRCEL! {player.nombre} se mueve a la Casilla {player.posicion}."
+            self.next_turn()
+            return # Ya se pasó el turno
+
+        # Si no está en estado de compra y no quebró, pasar turno
+        if not self.purchase_state and not self.game_over:
+            self.next_turn()
+
+    def process_purchase(self, wants_to_buy):
+        """Maneja la decisión de compra de propiedad."""
+        player = self.current_player
+        casilla_actual = self.board[player.posicion]
+        
+        if wants_to_buy:
+            if player.dinero >= casilla_actual["precio"]:
+                player.pay(casilla_actual["precio"]) # Usar pay para descontar
+                self.board[player.posicion]["propietario"] = player.id
+                self.current_message = f" ¡COMPRADO! {player.nombre} es dueño de {casilla_actual['nombre']} por ${casilla_actual['precio']}."
+            else:
+                self.current_message = " ¡No tienes suficiente dinero para comprar!"
+        else:
+            self.current_message = f" {player.nombre} decidió no comprar {casilla_actual['nombre']}."
+        
+        self.purchase_state = False
+        self.next_turn()
+
+    def get_token_coords(self, pos, player_id):
+        """
+        Mapea la posición del tablero a coordenadas de pantalla (x, y),
+        aplicando un offset para múltiples jugadores.
+        """
+        offset_map = {
+            1: (0, 0),
+            2: (15, 0),
+            3: (0, 15),
+            4: (15, 15)
+        }
+        offset_x, offset_y = offset_map.get(player_id, (0, 0))
+
+        # Coordenadas base
+        if 0 <= pos <= 10: # Lado inferior (incluye esquina 0)
+            x = self.BORDE - (pos * self.ESPACIO)
+            y = self.BORDE
+        elif 11 <= pos <= 20: # Lado izquierdo
+            x = 0
+            y = self.BORDE - ((pos - 10) * self.ESPACIO)
+        elif 21 <= pos <= 30: # Lado superior
+            x = ((pos - 20) * self.ESPACIO)
+            y = 0
+        elif 31 <= pos <= 39: # Lado derecho
+            x = self.BORDE
+            y = ((pos - 30) * self.ESPACIO)
+        else:
+            return (self.BORDE, self.BORDE)
+        
+        # Ajustar para centrar la ficha en el espacio y aplicar offset
+        x += (self.ESPACIO - self.TAMANO_FICHA[0]) // 2 + offset_x - 7
+        y += (self.ESPACIO - self.TAMANO_FICHA[1]) // 2 + offset_y - 7
+        
+        return (x, y)
+
+    def draw_board(self):
+        """Dibuja el tablero, nombres de casillas y barras de color."""
+        # Dibuja la cuadrícula base
+        for i in range(11):
+            pygame.draw.line(self.pantalla, BLACK, (i * self.ESPACIO, 0), (i * self.ESPACIO, self.ALTURA))
+            pygame.draw.line(self.pantalla, BLACK, (0, i * self.ESPACIO), (self.ANCHO, i * self.ESPACIO))
+
+        # Dibujar el nombre de cada casilla y la barra de color
+        for i in range(40):
+            casilla = self.board[i]
+            
+            # 1. Calcular rectángulo de la casilla
+            if 0 <= i <= 10: 
+                rect = pygame.Rect(self.ANCHO - (i + 1) * self.ESPACIO, self.ALTURA - self.ESPACIO, self.ESPACIO, self.ESPACIO)
+                color_rect = pygame.Rect(rect.left, rect.top, self.ESPACIO, 10) 
+                
+            elif 11 <= i <= 20: 
+                rect = pygame.Rect(0, self.ALTURA - (i - 9) * self.ESPACIO, self.ESPACIO, self.ESPACIO)
+                color_rect = pygame.Rect(rect.right - 10, rect.top, 10, self.ESPACIO) 
+                
+            elif 21 <= i <= 30: 
+                rect = pygame.Rect((i - 20) * self.ESPACIO, 0, self.ESPACIO, self.ESPACIO)
+                color_rect = pygame.Rect(rect.left, rect.bottom - 10, self.ESPACIO, 10) 
+
+            elif 31 <= i <= 39: 
+                rect = pygame.Rect(self.ANCHO - self.ESPACIO, (i - 30) * self.ESPACIO, self.ESPACIO, self.ESPACIO)
+                color_rect = pygame.Rect(rect.left, rect.top, 10, self.ESPACIO) 
+
+            # 2. Dibujar barra de color e indicador de dueño
+            if casilla["tipo"] in ["Propiedad", "Ferrocarril", "Servicio"]:
+                pygame.draw.rect(self.pantalla, casilla["color_grupo"], color_rect)
+                
+                if casilla["propietario"] is not None:
+                    dueño = next((p for p in self.players if p.id == casilla["propietario"]), None)
+                    if dueño:
+                        propietario_color = dueño.color
+                        owner_rect = pygame.Rect(rect.centerx - 5, rect.centery - 5, 10, 10)
+                        pygame.draw.rect(self.pantalla, propietario_color, owner_rect)
+
+            # 3. Dibujar nombre
+            nombre_linea1 = self.SMALL_FONT.render(casilla["nombre"], True, BLACK)
+            
+            if nombre_linea1.get_width() > self.ESPACIO - 4:
+                palabras = casilla["nombre"].split()
+                nombre_linea1_rend = self.SMALL_FONT.render(palabras[0], True, BLACK)
+                nombre_linea2_rend = self.SMALL_FONT.render(" ".join(palabras[1:]), True, BLACK)
+                self.pantalla.blit(nombre_linea1_rend, (rect.centerx - nombre_linea1_rend.get_width() / 2, rect.top + 10))
+                self.pantalla.blit(nombre_linea2_rend, (rect.centerx - nombre_linea2_rend.get_width() / 2, rect.top + 25))
+            else:
+                self.pantalla.blit(nombre_linea1, (rect.centerx - nombre_linea1.get_width() / 2, rect.top + 20))
+
+            # 4. Dibujar precio
+            if casilla["precio"] > 0 and casilla["tipo"] != "Impuesto":
+                precio_texto = self.TINY_FONT.render(f"${casilla['precio']}", True, BLACK)
+                self.pantalla.blit(precio_texto, (rect.centerx - precio_texto.get_width() / 2, rect.bottom - 15))
+
+        # Dibuja el centro del tablero para las estadísticas
+        centro_rect = pygame.Rect(self.ESPACIO, self.ESPACIO, self.ANCHO - 2*self.ESPACIO, self.ALTURA - 2*self.ESPACIO)
+        pygame.draw.rect(self.pantalla, (240, 240, 240), centro_rect)
+        pygame.draw.rect(self.pantalla, BLACK, centro_rect, 2)
+
+    def draw_ui(self):
+        """Dibuja la información de estado de los jugadores y los mensajes del juego."""
+        # Título
+        text_title = self.FONT.render("Monopoly Argentino", True, BLACK)
+        self.pantalla.blit(text_title, (self.ANCHO/2 - text_title.get_width()/2, self.ALTURA/2 - 140))
+        
+        # Estado de todos los jugadores
+        y_offset = self.ALTURA/2 - 90
+        for jugador in self.players:
+            if jugador.activo:
+                # Si es el turno actual, marcarlo
+                prefix = "➡️" if jugador.id == self.current_player.id and not self.game_over else ""
+                status_text = f"{prefix} {jugador.nombre} (${jugador.dinero})"
+                color = jugador.color
+            else:
+                status_text = f"💀 {jugador.nombre} (ELIMINADO)"
+                color = (100, 100, 100)
+                
+            text_status = self.STATUS_FONT.render(status_text, True, color)
+            self.pantalla.blit(text_status, (self.ANCHO/2 - text_status.get_width()/2, y_offset))
+            y_offset += 25
+
+        # Mensaje del juego
+        text_msg = self.SMALL_FONT.render(self.current_message, True, (150, 0, 0))
+        self.pantalla.blit(text_msg, (self.ANCHO/2 - text_msg.get_width()/2, self.ALTURA/2 + 40))
+
+        # Instrucciones de tirada
+        if not self.game_over and not self.purchase_state:
+            text_instr_roll = self.SMALL_FONT.render("Presiona 'S' para tirar los dados", True, BLACK)
+            self.pantalla.blit(text_instr_roll, (self.ANCHO/2 - text_instr_roll.get_width()/2, self.ALTURA/2 + 90))
+
+        # Instrucciones de compra
+        if self.purchase_state:
+            casilla_actual = self.board[self.current_player.posicion]
+            text_instr_buy = self.FONT.render(f"Comprar ({casilla_actual['precio']})? (B/N)", True, BLUE)
+            self.pantalla.blit(text_instr_buy, (self.ANCHO/2 - text_instr_buy.get_width()/2, self.ALTURA/2 + 130))
+
+    def draw_players(self):
+        """Dibuja las fichas de los jugadores en el tablero."""
+        for player in self.players:
+            if player.activo:
+                player_coords = self.get_token_coords(player.posicion, player.id)
+                self.pantalla.blit(player.ficha_img, player_coords)
+
+    def draw(self):
+        """Método principal de dibujo."""
+        self.pantalla.fill(WHITE)
+        self.draw_board()
+        self.draw_ui()
+        self.draw_players()
+        pygame.display.flip()
+
+# --- BUCLE PRINCIPAL DE JUEGO (GAME LOOP) ---
+
+# Inicializar la instancia del juego
+monopoly_game = Game(
+    board_data=TABLERO_DATA,
+    players_data=JUGADORES_INICIAL,
+    pantalla=PANTALLA,
+    ancho=ANCHO,
+    altura=ALTURA,
+    tamano_ficha=TAMANO_FICHA,
+    fonts=(FONT, SMALL_FONT, TINY_FONT, STATUS_FONT)
+)
+
+running = True
+while running:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+        
+        # Manejo de entrada
+        if event.type == pygame.KEYDOWN and not monopoly_game.game_over:
+            
+            player = monopoly_game.current_player
+            
+            if event.key == pygame.K_s and not monopoly_game.purchase_state:
+                # Tirar dados y mover
+                roll = monopoly_game.roll_dice()
+                if roll > 0:
+                    if player.move(roll):
+                        player.receive_money(200) # Usar receive_money para cobrar
+                        monopoly_game.current_message += " 💸 ¡Cobraste $200 por pasar SALIDA!"
+                    
+                    monopoly_game.handle_interaction()
+
+            elif monopoly_game.purchase_state:
+                # Decisión de compra
+                if event.key == pygame.K_b: # Comprar (Buy)
+                    monopoly_game.process_purchase(wants_to_buy=True)
+                
+                elif event.key == pygame.K_n: # No comprar
+                    monopoly_game.process_purchase(wants_to_buy=False)
+                
+    # Dibujo del juego
+    monopoly_game.draw()
+    
+    CLOCK.tick(FPS)
+
+pygame.quit()
