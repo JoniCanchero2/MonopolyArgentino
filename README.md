@@ -41,9 +41,9 @@ siempre y cuando no sean propiedades
 4) Temperley {Marron} (Propiedad de $60)
 5) Suerte (Especial) (Da una tarjeta de suerte)
 6) Lineas de Colectivo (Especial) (Propiedad de transporte que vale $150)
-7) Berazategui {Celeste} (Propiedad que vale $100)
-8) Quilmes{Celeste} (Propiedad que vale $110)
-9) Suerte (Especial) (Da una tarjeta de suerte)
+7) Berazategui {Celeste} (Propiedad que vale $100
+8) Suerte (Especial) (Da una tarjeta de suerte)
+9) Quilmes{Celeste} (Propiedad que vale $110)
 10) Lomas de Zamora {Celeste} (Propiedad que vale $120)
 11) visita a la carcel (Especial) (Casilla libre donde también van a parar los jugadores arrestados)
 12) Avellaneda {Rosa} (Propiedad que vale $140)
@@ -75,6 +75,8 @@ siempre y cuando no sean propiedades
 38) Palermo {Azul} (Propiedad que vale $350)
 39) Impuesto de lujo (Impuesto que resta $200)
 40) Puerto Madero {Azul} (Propiedad que vale $400)
+
+(SE CAMBIO EL NUMERO 8 DE BERAZATEGUI POR EL NUMERO 9 DE SUERTE, AHORA QUEDO COMO SUERTE 8 Y BERAZATEGUI 9)
 
 Tarjetas de suerte:
 1)  Subieron los impuestos -100 M
