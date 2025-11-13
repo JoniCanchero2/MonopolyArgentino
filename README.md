@@ -86,7 +86,7 @@ Tarjetas de suerte:
 8) Tus compañeros te vendieron un curso...(le das 20 a cada jugador) M
 9) Visita al presidente (vas hasta Olivos, si pasa por la salida cobra el dinero) B
 10) Perdiste el bondi retrocedes 3 casilleros M
-11) Te paro transito perdes un turno (*Te paro la policia para ser testigo, perdes un turno*) M
+11) Te paro transito perdes un turno (Te paro la policia para ser testigo) M
 12) Te cruzaste un vendedor de medias perdes $40 M
 13) Ganaste la rifa del dia del padre ganaste $50 B
 14) Dia del empleado municipal ganaste 1 turno B
