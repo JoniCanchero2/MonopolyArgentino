@@ -77,26 +77,26 @@ siempre y cuando no sean propiedades
 40) Puerto Madero {Azul} (Propiedad que vale $400)
 
 Tarjetas de suerte:
-1) Subieron los impuestos -100 M
+1)  Subieron los impuestos -100 M
 2)  Ganaste la loteria +150 B
 3)  Se comprobo tu inocencia (vale para salir de la cárcel 1 vez) B
 4)  Se te acuso de fraude (vas a la cárcel) M
 5)  Ganaste un sorteo del banco +100 B
 6)  Pediste un prestamo y no lo pagaste a tiempo, te cobran intereses -150 M
-7)  Es tu cumpleaños (cada jugador te da 50) B 
-8)  Tus compañeros te pidieron dinero (le das 20 a cada jugador) M
-9)  Visita al presidente (vas hasta Olivos, si pasa por la salida cobra el dinero) B
-10) Tomaste el bondi equivocado retrocedes 3 casilleros M
-11) Te paro transito perdes un turno (*Te paro la policia para ser testigo, perdes un turno*) M
-12) Perdiste la billetera -$40 M
-13) Ganaste la rifa del dia del padre ganaste $50 B
-14) Dia del empleado municipal ganaste 1 turno B
-15) Error bancario todos ganan $100 B
-16) Cayo mercado pago todos pierden $100 M
-17) Pagas impuesto a la ganancia - $100 M 
-18) Argentina gana el mundial, feriado nacional, ganas un turno B
-19) Te multan por exceso de velocidad -$200 M (y vas preso)
-20) Recibiste una transferencia equivocada +200 B 
+7)  Es tu cumpleaños (cada jugador te da $50) B 
+9)  Tus compañeros te pidieron plata (le das $20 a cada jugador) M
+10) Visita al presidente (vas hasta Olivos, si pasa por la salida cobra el dinero) B
+11) Tomaste el bondi equivocado retrocedes 3 casilleros M
+12) Te paro la policia para ser testigo, perdes un turno M
+13) Perdiste la billetera -$40 M
+14) Ganaste la rifa del dia del padre ganaste $50 B
+15) Dia del empleado municipal ganaste 1 turno B
+16) Error bancario todos ganan $100 B
+17) Cayo mercado pago todos pierden $100 M
+18) Pagas impuesto a la ganancia - $100 M 
+19) Argentina gana el mundial, feriado nacional, ganas un turno B
+20) Te multan por exceso de velocidad -$200 M (y vas preso)
+21) Recibiste una transferencia equivocada +200 B 
 
 
 
