@@ -63,3 +63,13 @@ while not moriste:
 
 pygame.quit()
 sys.exit()
+
+1) Inicial (Indica inicio y la vuelta completa del tablero)
+2) Florencio Varela {Marron} (Propiedad de $50)
+3) Impuesto medio (Impuesto que resta $100)
+4) Temperley {Marron} (Propiedad de $60)
+5) Suerte (Especial) (Da una tarjeta de suerte)
+6) Lineas de Colectivo (Especial) (Propiedad de transporte que vale $150)
+7) Berazategui {Celeste} (Propiedad que vale $100
+8) Suerte (Especial) (Da una tarjeta de suerte)
+9) Quilmes{Celeste} (Propiedad que vale $110)
