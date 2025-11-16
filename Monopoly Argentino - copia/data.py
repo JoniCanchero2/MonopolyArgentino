@@ -1,0 +1,51 @@
+from seteador import COLOR_FICHA_1, COLOR_FICHA_2, COLOR_FICHA_3, COLOR_FICHA_4
+
+TABLERO_DATA = [
+    {"nombre": "SALIDA", "tipo": "Salida", "precio": 0, "alquiler": 0, "color_grupo": (0, 0, 0), "propietario": None},
+    {"nombre": "Florencio Varela", "tipo": "Propiedad", "precio": 50, "alquiler": 4, "color_grupo": (139, 69, 19), "propietario": None},
+    {"nombre": "Impuesto Medio", "tipo": "Impuesto", "precio": 100, "alquiler": 20, "color_grupo": (255, 255, 255), "propietario": None},
+    {"nombre": "Temperley", "tipo": "Propiedad", "precio": 60, "alquiler": 8, "color_grupo": (139, 69, 19), "propietario": None},
+    {"nombre": "SUERTE", "tipo": "Suerte", "precio": 0, "alquiler": 0, "color_grupo": (255, 255, 255), "propietario": None},
+    {"nombre": "Lineas de Colectivo", "tipo": "Ferrocarril", "precio": 150, "alquiler": 25, "color_grupo": (0, 0, 0), "propietario": None},
+    {"nombre": "Berazategui", "tipo": "Propiedad", "precio": 100, "alquiler": 12, "color_grupo": (173, 216, 230), "propietario": None},
+    {"nombre": "SUERTE", "tipo": "Suerte", "precio": 0, "alquiler": 0, "color_grupo": (255, 255, 255), "propietario": None},
+    {"nombre": "Quilmes", "tipo": "Propiedad", "precio": 110, "alquiler": 12, "color_grupo": (173, 216, 230), "propietario": None},
+    {"nombre": "Lomas de Zamora", "tipo": "Propiedad", "precio": 120, "alquiler": 16, "color_grupo": (173, 216, 230), "propietario": None},
+    {"nombre": "CÁRCEL", "tipo": "Cárcel", "precio": 0, "alquiler": 0, "color_grupo": (0, 0, 0), "propietario": None},
+    {"nombre": "Avellaneda", "tipo": "Propiedad", "precio": 140, "alquiler": 24, "color_grupo": (255, 0, 0), "propietario": None},
+    {"nombre": "Edenor", "tipo": "Servicio", "precio": 150, "alquiler": 25, "color_grupo": (0, 0, 0), "propietario": None},
+    {"nombre": "Lanus", "tipo": "Propiedad", "precio": 150, "alquiler": 24, "color_grupo": (255, 0, 0), "propietario": None},
+    {"nombre": "La Tablada", "tipo": "Propiedad", "precio": 160, "alquiler": 24, "color_grupo": (255, 0, 0), "propietario": None},
+    {"nombre": "Linea de Trenes", "tipo": "Ferrocarril", "precio": 150, "alquiler": 25, "color_grupo": (0, 0, 0), "propietario": None},
+    {"nombre": "Moreno", "tipo": "Propiedad", "precio": 180, "alquiler": 30, "color_grupo": (255, 165, 0), "propietario": None},
+    {"nombre": "SUERTE", "tipo": "Suerte", "precio": 0, "alquiler": 0, "color_grupo": (255, 255, 255), "propietario": None},
+    {"nombre": "Loma Hermosa", "tipo": "Propiedad", "precio": 190, "alquiler": 35, "color_grupo": (255, 165, 0), "propietario": None},
+    {"nombre": "Hurlingham", "tipo": "Propiedad", "precio": 200, "alquiler": 40, "color_grupo": (255, 165, 0), "propietario": None},
+    {"nombre": "DESCANSO GRATIS", "tipo": "Descanso", "precio": 0, "alquiler": 0, "color_grupo": (0, 0, 0), "propietario": None},
+    {"nombre": "Villa Bosch", "tipo": "Propiedad", "precio": 220, "alquiler": 42, "color_grupo": (255, 255, 0), "propietario": None},
+    {"nombre": "San Martin", "tipo": "Propiedad", "precio": 230, "alquiler": 45, "color_grupo": (255, 255, 0), "propietario": None},
+    {"nombre": "AYSA", "tipo": "Servicio", "precio": 150, "alquiler": 25, "color_grupo": (0, 0, 0), "propietario": None},
+    {"nombre": "Tigre", "tipo": "Propiedad", "precio": 240, "alquiler": 50, "color_grupo": (255, 255, 0), "propietario": None},
+    {"nombre": "Lineas de Barco", "tipo": "Ferrocarril", "precio": 150, "alquiler": 25, "color_grupo": (0, 0, 0), "propietario": None},
+    {"nombre": "San Isidro", "tipo": "Propiedad", "precio": 260, "alquiler": 55, "color_grupo": (0, 128, 0), "propietario": None},
+    {"nombre": "Olivos", "tipo": "Propiedad", "precio": 260, "alquiler": 55, "color_grupo": (0, 128, 0), "propietario": None},
+    {"nombre": "SUERTE", "tipo": "Suerte", "precio": 0, "alquiler": 0, "color_grupo": (255, 255, 255), "propietario": None},
+    {"nombre": "Vicente Lopez", "tipo": "Propiedad", "precio": 280, "alquiler": 58, "color_grupo": (0, 128, 0), "propietario": None},
+    {"nombre": "IR A CÁRCEL", "tipo": "IrACárcel", "precio": 0, "alquiler": 0, "color_grupo": (0, 0, 0), "propietario": None},
+    {"nombre": "Devoto", "tipo": "Propiedad", "precio": 300, "alquiler": 60, "color_grupo": (0, 0, 255), "propietario": None},
+    {"nombre": "Nuñez", "tipo": "Propiedad", "precio": 310, "alquiler": 65, "color_grupo": (0, 0, 255), "propietario": None},
+    {"nombre": "SUERTE", "tipo": "Suerte", "precio": 0, "alquiler": 0, "color_grupo": (255, 255, 255), "propietario": None},
+    {"nombre": "Belgrano", "tipo": "Propiedad", "precio": 320, "alquiler": 68, "color_grupo": (0, 0, 255), "propietario": None},
+    {"nombre": "Linea de Avion", "tipo": "Ferrocarril", "precio": 150, "alquiler": 25, "color_grupo": (0, 0, 0), "propietario": None},
+    {"nombre": "SUERTE", "tipo": "Suerte", "precio": 0, "alquiler": 0, "color_grupo": (255, 255, 255), "propietario": None},
+    {"nombre": "Palermo", "tipo": "Propiedad", "precio": 350, "alquiler": 70, "color_grupo": (128, 0, 128), "propietario": None},
+    {"nombre": "Impuesto de lujo", "tipo": "Impuesto", "precio":200, "alquiler": 40, "color_grupo": (0, 0, 0), "propietario": None},
+    {"nombre": "Puerto Madero", "tipo": "Propiedad", "precio": 400, "alquiler": 75, "color_grupo": (128, 0, 128), "propietario": None}
+]
+
+JUGADORES_INICIAL = [
+    {"id": 1, "nombre": "Jugador 1 (Termidor)", "dinero": 1500, "posicion": 0, "color": COLOR_FICHA_1, "ficha_img": None},
+    {"id": 2, "nombre": "Jugador 2 (Brahma)", "dinero": 1500, "posicion": 0, "color": COLOR_FICHA_2, "ficha_img": None},
+    {"id": 3, "nombre": "Jugador 3 (Fernet)", "dinero": 1500, "posicion": 0, "color": COLOR_FICHA_3, "ficha_img": None},
+    {"id": 4, "nombre": "Jugador 4 (Absolute)", "dinero": 1500, "posicion": 0, "color": COLOR_FICHA_4, "ficha_img": None}
+]
