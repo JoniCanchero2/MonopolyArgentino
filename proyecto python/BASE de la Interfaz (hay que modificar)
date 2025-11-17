@@ -1,22 +1,19 @@
-##ESTO SIRVE COMO BASE HAY QUE MODIFICAR Y AGREGAR LA LOGICA
-
-
 import random
 import pygame
 import time
 
-# --- CONFIGURACIÓN E INICIALIZACIÓN DE PYGAME ---
+# titulo y configuracion
 pygame.init()
 pygame.display.set_caption("Monopoly Argentino - Clases")
 
-# Dimensiones y Colores
+# dimensiones y colores
 ANCHO = 660
 ALTURA = 660
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 BLUE = (0, 0, 255)
 
-# Colores para las fichas de jugadores
+# colores de las fichas de los jugadores
 COLOR_FICHA_1 = (0, 0, 255)     # Azul
 COLOR_FICHA_2 = (200, 0, 0)     # Rojo
 COLOR_FICHA_3 = (0, 150, 0)     # Verde Oscuro
@@ -28,7 +25,7 @@ FPS = 60
 ESPACIO = 60
 BORDE = ANCHO - ESPACIO # 600
 
-# --- DATA DEL TABLERO (40 CASILLAS) ---
+# tablero con las 40 casillas
 TABLERO_DATA = [
     {"nombre": "SALIDA", "tipo": "Salida", "precio": 0, "alquiler": 0, "color_grupo": (0, 0, 0), "propietario": None},
     {"nombre": "Tierra del Fuego", "tipo": "Propiedad", "precio": 60, "alquiler": 2, "color_grupo": (139, 69, 19), "propietario": None},
@@ -72,13 +69,13 @@ TABLERO_DATA = [
     {"nombre": "Buenos Aires", "tipo": "Propiedad", "precio": 400, "alquiler": 50, "color_grupo": (128, 0, 128), "propietario": None}
 ]
 
-# --- ASSETS (Carga de Fichas) ---
+# carga de fichas
 TAMANO_FICHA = (30, 30)
 try:
     termidor_img = pygame.image.load("termidor.png").convert_alpha()
     termidor_ficha = pygame.transform.scale(termidor_img, TAMANO_FICHA)
 except pygame.error:
-    print("WARNING: termidor.png no se encontró. Usando un cuadrado de color de reserva.")
+    print("Guarda : termidor.png no se encontro. Usando un cuadrado de color de reserva.")
     termidor_ficha = pygame.Surface(TAMANO_FICHA)
     termidor_ficha.fill(COLOR_FICHA_1)
 
@@ -88,14 +85,14 @@ JUGADORES_INICIAL = [
     {"id": 3, "nombre": "Jugador 3 (Verde)", "dinero": 1500, "posicion": 0, "color": COLOR_FICHA_3, "ficha_img": None},
 ]
 
-# Crear fichas de color simple para los jugadores 2 y 3
+# Crea fichas de color para los jugadores 2 y 3
 for jugador in JUGADORES_INICIAL:
     if jugador["ficha_img"] is None:
         ficha = pygame.Surface(TAMANO_FICHA)
         ficha.fill(jugador["color"])
         jugador["ficha_img"] = ficha
 
-# --- CONFIGURACIÓN DE FUENTES ---
+# fuentes de letra
 try:
     FONT = pygame.font.SysFont('Arial', 24)
     SMALL_FONT = pygame.font.SysFont('Arial', 14)
@@ -107,7 +104,7 @@ except:
     TINY_FONT = pygame.font.Font(None, 12)
     STATUS_FONT = pygame.font.Font(None, 20)
 
-# --- CLASES ---
+# clases
 
 class Player:
     """Representa a un jugador en el juego."""
@@ -121,7 +118,7 @@ class Player:
         self.ficha_img = ficha_img
 
     def move(self, roll):
-        """Mueve al jugador y retorna si pasó por SALIDA."""
+        """Mueve al jugador y retorna si pasó por la salida."""
         old_pos = self.posicion
         self.posicion = (old_pos + roll) % 40
         return old_pos + roll > 39
@@ -137,7 +134,7 @@ class Player:
 
 
 class Game:
-    """Clase principal que gestiona el estado y la lógica del juego Monopoly."""
+    """Clase principal que gestiona el estado y la lógica del juego."""
     def __init__(self, board_data, players_data, pantalla, ancho, altura, tamano_ficha, fonts):
         self.board = board_data
         self.players = self._initialize_players(players_data)
@@ -195,7 +192,7 @@ class Game:
                 self.current_message = "¡Todos han quedado en bancarrota! Fin del juego."
             return
 
-        # 2. Pasar al siguiente índice activo
+        # 2. Pasa el turno al siguiente jugador
         while True:
             self.current_turn_index = (self.current_turn_index + 1) % len(self.players)
             self.current_player = self.players[self.current_turn_index]
@@ -444,9 +441,9 @@ class Game:
         self.draw_players()
         pygame.display.flip()
 
-# --- BUCLE PRINCIPAL DE JUEGO (GAME LOOP) ---
+# bucle del juego
 
-# Inicializar la instancia del juego
+#  inicializa el juego 
 monopoly_game = Game(
     board_data=TABLERO_DATA,
     players_data=JUGADORES_INICIAL,
