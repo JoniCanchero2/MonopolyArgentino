@@ -5,30 +5,23 @@ Por: Jonathan Ramirez, Mateo Navarro, Brandon Moreyra  y Axel Cavero
 **Introducción:**
 
 El juego es una competencia de estrategia y gestión económica donde el objetivo es comprar todas las propiedades posibles y llevar a la bancarrota a los demás jugadores.
-Se avanza con dos dados, se invierte el dinero inicial ($1500) en propiedades, servicios (Luz/Agua) y transporte. La clave para ganar es adquirir grupos de color para poder construir casas y cobrar rentas más altas. El riesgo reside en las tiradas: sacar dados dobles tres veces seguidas resulta en arresto. Gana el último jugador que conserve su dinero.
+Se avanza con dos dados, se invierte el dinero inicial ($1000) en propiedades, servicios (Luz/Agua) y transporte. Gana el último jugador que conserve su dinero.
 
 Reglas:
 
 Cada jugador por turno arrojará dos dados cual suma ambos indica el avance del jugador.
 
-Si la tirada del jugador da como resultado dos dados iguales, el jugador vuelve a tirar. 
-Esto se puede repetir una vez más con limite de 2 repeticiones, en caso de volver a tirar dados dobles el jugador es arrestado.
-
 Cada jugador empieza con $1500 con los cuales compra propiedades, paga impuestos al banco y/o al/los jugador/es contrario.
 
 El ganador es el último jugador con dinero, para esto debe conseguir que el resto pierda todo el suyo. 
 
-Las propiedades se pueden comprar/subastar/negociar entre jugadores ya sea por otras propiedades o por dinero.
+Las propiedades se pueden comprar o no. La clave está en saber administrar la economía personal de cada jugador decidiendo cuando y no comprar.
 
-Cada propiedad posee un color, al poseer todas las propiedades del color compradas el jugador puede construir casas y cobrar más caro a los jugadores que pasen por sus propiedades.
+Cada propiedad posee un color, al poseer todas las propiedades del color que indican su precio y a la vez su valor a pagar.
 
 Ciertas casillas benefician o empeoran la economia del jugador. Las casillas "de suerte" brindan una tarjeta aleatoria.
 
-Por cada vuelta al tablero c/jugador cobra $200.
-
-Existen varias casillas de transporte que se pueden comprar, dependiendo de esto, el jugador contrario que caiga sobre una de estas deberá pagar el valor correspondiente duplicado por cada propiedad adquirida.
-
-Las casillas de Luz y Agua tambien son comprables, el monto a pagar del jugador que pase sobre ellas y no las tenga compradas cambiara en funcion del numero de los dados. Si el dueño de las propiedades posee solamente una, el jugador que caiga deberá pagar el cuadruple de la suma de su tirada. En caso de que el dueño posea las dos propiedades, pagará diez veces la suma de su tirada.
+Por cada vuelta al tablero c/jugador cobra $200 lo cual aumenta sus posibilidades de seguir con vida.
 
 Casilleros (40):
 
@@ -81,7 +74,7 @@ siempre y cuando no sean propiedades
 Tarjetas de suerte:
 1)  Subieron los impuestos -100 M
 2)  Ganaste la loteria +150 B
-3)  Se comprobo tu inocencia (vale para salir de la cárcel 1 vez) B
+3)  Se comprobo tu inocencia (vale para salir de la cárcel 1 vez) B // CANCELADA
 4)  Se te acuso de fraude (vas a la cárcel) M
 5)  Ganaste un sorteo del banco +100 B
 6)  Pediste un prestamo y no lo pagaste a tiempo, te cobran intereses -150 M
