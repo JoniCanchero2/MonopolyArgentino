@@ -96,6 +96,7 @@ class Game:
         return players
 
     def _load_player_token(self, name, color):
+        """Carga la imagen de la ficha o crea un sustituto de color."""
         try:
             token_name = name.split("(")[1].split(")")[0].lower()
             file_name = f"{token_name}.png"
@@ -110,6 +111,7 @@ class Game:
             return ficha
 
     def roll_dice(self):
+
         if self.game_over:
             self.current_message = "El juego ha terminado."
             return 0
@@ -307,6 +309,7 @@ class Game:
         return None
 
     def process_suerte_card(self):
+
         player = self.current_player
         card = self._draw_suerte_card()
 
@@ -792,7 +795,7 @@ class Game:
 
         elif self.purchase_state:
             casilla_actual = self.board[self.current_player.posicion]
-            text_instr_buy = self.FONT.render(f"¿Comprar ({casilla_actual['precio']})? (B/N)", True, BLUE)
+            text_instr_buy = self.FONT.render(f"¿Comprar ({casilla_actual['precio']})? (B/M)", True, BLUE)
             self.pantalla.blit(text_instr_buy, (self.ANCHO/2 - text_instr_buy.get_width()/2, self.ALTURA/2 + 90))
 
         elif self.interaction_done:
@@ -805,10 +808,10 @@ class Game:
                 self.pantalla.blit(player.ficha_img, player_coords)
 
     def draw(self):
+
         from seteador import WHITE 
         self.pantalla.fill(WHITE)
         self.draw_board()
         self.draw_ui()
         self.draw_players()
-
         pygame.display.flip()

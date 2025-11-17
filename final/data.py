@@ -44,8 +44,8 @@ TABLERO_DATA = [
 ]
 
 JUGADORES_INICIAL = [
-    {"id": 1, "nombre": "Jugador 1 (Termidor)", "dinero": 1500, "posicion": 0, "color": COLOR_FICHA_1, "ficha_img": None},
-    {"id": 2, "nombre": "Jugador 2 (Brahma)", "dinero": 1500, "posicion": 0, "color": COLOR_FICHA_2, "ficha_img": None},
-    {"id": 3, "nombre": "Jugador 3 (Fernet)", "dinero": 1500, "posicion": 0, "color": COLOR_FICHA_3, "ficha_img": None},
-    {"id": 4, "nombre": "Jugador 4 (Absolute)", "dinero": 1500, "posicion": 0, "color": COLOR_FICHA_4, "ficha_img": None}
+    {"id": 1, "nombre": "Jugador 1 (Termidor)", "dinero": 1000, "posicion": 0, "color": COLOR_FICHA_1, "ficha_img": None},
+    {"id": 2, "nombre": "Jugador 2 (Brahma)", "dinero": 1000, "posicion": 0, "color": COLOR_FICHA_2, "ficha_img": None},
+    {"id": 3, "nombre": "Jugador 3 (Fernet)", "dinero": 1000, "posicion": 0, "color": COLOR_FICHA_3, "ficha_img": None},
+    {"id": 4, "nombre": "Jugador 4 (Absolute)", "dinero": 1000, "posicion": 0, "color": COLOR_FICHA_4, "ficha_img": None}
 ]

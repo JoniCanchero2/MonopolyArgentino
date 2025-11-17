@@ -101,7 +101,7 @@ while running:
                     
                     monopoly_game.handle_interaction()
 
-            # 4) TEMINA LA INTERACCIÓN 
+            # 4) TERMINA LA INTERACCIÓN 
             elif event.key == pygame.K_s and monopoly_game.interaction_done:
                 monopoly_game.interaction_done = False
                 monopoly_game.next_turn()
@@ -110,7 +110,7 @@ while running:
             elif monopoly_game.purchase_state:
                 if event.key == pygame.K_b:
                     monopoly_game.process_purchase(wants_to_buy=True)
-                elif event.key == pygame.K_n:
+                elif event.key == pygame.K_m:
                     monopoly_game.process_purchase(wants_to_buy=False)
     # Lógica de dibujo
     PANTALLA.fill(WHITE)
