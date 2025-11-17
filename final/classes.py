@@ -96,7 +96,6 @@ class Game:
         return players
 
     def _load_player_token(self, name, color):
-        """Carga la imagen de la ficha o crea un sustituto de color."""
         try:
             token_name = name.split("(")[1].split(")")[0].lower()
             file_name = f"{token_name}.png"
@@ -111,7 +110,6 @@ class Game:
             return ficha
 
     def roll_dice(self):
-        """Simula la tirada de dados y aplica la lógica de la cárcel."""
         if self.game_over:
             self.current_message = "El juego ha terminado."
             return 0
@@ -296,7 +294,6 @@ class Game:
     #MÉTODOS DE TARJETAS
     
     def _draw_suerte_card(self):
-        """Saca una carta de Suerte del mazo, baraja si es necesario."""
         if not self.suerte_deck:
             self.suerte_deck = self.suerte_discard
             self.suerte_discard = []
@@ -310,7 +307,6 @@ class Game:
         return None
 
     def process_suerte_card(self):
-        """Saca una carta y aplica su efecto. Implementa las 19 tarjetas personalizadas."""
         player = self.current_player
         card = self._draw_suerte_card()
 
@@ -429,7 +425,6 @@ class Game:
                 self.interaction_done = True
 
     def handle_interaction(self):
-        """Maneja lo que sucede al caer en una casilla."""
         player = self.current_player
         posicion = player.posicion
         casilla = self.board[posicion]
@@ -496,7 +491,6 @@ class Game:
             self.interaction_done = True 
     
     def process_purchase(self, wants_to_buy):
-        """Maneja la decisión de compra de propiedad."""
         player = self.current_player
         casilla_actual = self.board[player.posicion]
         
@@ -816,4 +810,5 @@ class Game:
         self.draw_board()
         self.draw_ui()
         self.draw_players()
+
         pygame.display.flip()
