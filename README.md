@@ -68,9 +68,7 @@ siempre y cuando no sean propiedades
 38) Palermo {Azul} (Propiedad que vale $350)
 39) Impuesto de lujo (Impuesto que resta $200)
 40) Puerto Madero {Azul} (Propiedad que vale $400)
-
-(SE CAMBIO EL NUMERO 8 DE BERAZATEGUI POR EL NUMERO 9 DE SUERTE, AHORA QUEDO COMO SUERTE 8 Y BERAZATEGUI 9)
-
+    
 Tarjetas de suerte:
 1)  Subieron los impuestos -100 M
 2)  Ganaste la loteria +150 B
