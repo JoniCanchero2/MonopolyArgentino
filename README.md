@@ -11,7 +11,7 @@ Reglas:
 
 Cada jugador por turno arrojará dos dados cual suma ambos indica el avance del jugador.
 
-Cada jugador empieza con $1500 con los cuales compra propiedades, paga impuestos al banco y/o al/los jugador/es contrario.
+Cada jugador empieza con $1000 con los cuales compra propiedades, paga impuestos al banco y/o al/los jugador/es contrario.
 
 El ganador es el último jugador con dinero, para esto debe conseguir que el resto pierda todo el suyo. 
 
